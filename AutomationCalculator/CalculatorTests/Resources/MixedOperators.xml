@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Operand Type="AddOperator">
+  <Operand Type="SubtractOperator">
+    <Operand Type="NumberOperator" Value="6"/>
+    <Operand Type="NumberOperator" Value="1"/>
+  </Operand>
+  <Operand Type="MultiplyOperator">
+    <Operand Type="NumberOperator" Value="7"/>
+    <Operand Type="NumberOperator" Value="9"/>
+  </Operand>
+</Operand>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Operand Type="AddOperator">
+  <Operand Type="NumberOperator" Value="5"/>
+  <Operand Type="NumberOperator" Value="25"/>
+</Operand>
