@@ -42,6 +42,7 @@ namespace Binding.Basics.TwoWays
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+            //This Requires C# 6.0 Support Enabled / Capability 
             //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
