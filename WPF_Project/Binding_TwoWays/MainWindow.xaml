@@ -47,7 +47,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBox  Style="{StaticResource MyWaterMarkStyle}"  x:Name="txtOutPut" Margin="5" />
-            <Label>Type Here Update After Lost The Focus</Label>
+            <Label>Type Here Update After Lost The Focus UpdateSourceTrigger=Default</Label>
             <TextBox x:Name="txtInput" Margin="5"
 
                      Text="{Binding Text,
