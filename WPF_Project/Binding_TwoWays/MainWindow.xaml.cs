@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Binding.Basics.TwoWays
 {
@@ -46,5 +49,11 @@ namespace Binding.Basics.TwoWays
             //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void Button_CLick(object sender, RoutedEventArgs e)
+        {
+            BindingExpression be = txtInput3.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+
+        }
     }
 }

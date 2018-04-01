@@ -54,6 +54,24 @@
                                 ElementName=TxtWatherMarkTwo,
                                 UpdateSourceTrigger=Default,
                                 Mode=TwoWay}"/>
+            <Label>Type Here Update UpdateSourceTrigger=PropertyChanged</Label>
+            <TextBox x:Name="txtInput2" Margin="5"
+
+                     Text="{Binding Text,
+                                ElementName=TxtWatherMarkTwo,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Mode=TwoWay}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4">
+            <Label>Type Here Update UpdateSourceTrigger=Explicity</Label>
+            <TextBox x:Name="txtInput3" Margin="5"
+
+                     Text="{Binding Text,
+                                ElementName=TxtWatherMarkTwo,
+                                UpdateSourceTrigger=Explicit,
+                                Mode=TwoWay}"/>
+            <Button Content="Send" Click="Button_CLick"></Button>
 
         </StackPanel>
 
