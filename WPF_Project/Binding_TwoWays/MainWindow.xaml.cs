@@ -15,7 +15,7 @@ namespace Binding.Basics.TwoWays
     {
         public MainWindow()
         {
-            //Sete DataContext
+            //Set DataContext
             DataContext = this;
             InitializeComponent();
         }
@@ -49,11 +49,26 @@ namespace Binding.Basics.TwoWays
             //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Button_CLick(object sender, RoutedEventArgs e)
+        public string OldStylePropertyChanged
         {
-            BindingExpression be = txtInput3.GetBindingExpression(TextBox.TextProperty);
-            be.UpdateSource();
-
+            get { return _boundNumber; }
+            set
+            {
+                if (value != _boundNumber)
+                {
+                    _boundNumber = value;
+                    OnPropertyChangedOldStyle("OldStylePropertyChanged");
+                }
+            }
         }
+        private void OnPropertyChangedOldStyle(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
 }
