@@ -16,12 +16,12 @@ namespace Binding.StaticResource.AddNew
 
         private void cmdAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            NewEmployeeDetails ned = new NewEmployeeDetails();
-            bool? employeeEntered = ned.ShowDialog();
+            NewEmployeeDetails wNewEmployee = new NewEmployeeDetails();
+            bool? employeeEntered = wNewEmployee.ShowDialog();
             if ((employeeEntered.HasValue) && (employeeEntered.Value == true))
             {
                 ObservableCollection<Employee> oc = Resources["myEmployeeList"] as ObservableCollection<Employee>;
-                oc.Add(ned.ReturnValue);
+                oc.Add(wNewEmployee.ReturnValue);
             }
         }
     }
