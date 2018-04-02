@@ -9,6 +9,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -17,8 +19,10 @@
         <Line Grid.Row="1" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
         <Line Grid.Row="3" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
         <Line Grid.Row="4" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
+        <Line Grid.Row="5" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
+        <Line Grid.Row="6" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}">
-            <TextBlock TextWrapping="Wrap" >A rectangle when its height is always equal to its width, a square let's say", in this above case we are obliged to indicate the name of the binding object, namely the rectangle.</TextBlock>
+            <TextBlock TextWrapping="Wrap" >1- Model Self: A rectangle when its height is always equal to its width, a square let's say", in this above case we are obliged to indicate the name of the binding object, namely the rectangle.</TextBlock>
         </StackPanel>
         <Rectangle Grid.Row="1" Fill="Red" Name="rectangle" 
                    Height="20" Stroke="Black" 
@@ -27,13 +31,45 @@
                     Path=Height}"/>
 
         <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left" Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}">
-            <TextBlock TextWrapping="Wrap" >A rectangle when its height is always equal to its width, a square let's say", For this case we are not obliged to mention the name of the binding object and the Width will be always equal to the Height whenever the height is changed.</TextBlock>
+            <TextBlock TextWrapping="Wrap" >1- Model Self: A rectangle when its height is always equal to its width, a square let's say", For this case we are not obliged to mention the name of the binding object and the Width will be always equal to the Height whenever the height is changed.</TextBlock>
         </StackPanel>
         <Rectangle Grid.Row="3" Fill="Red" Height="20" 
                    Stroke="Black" 
                    Width="{Binding RelativeSource={RelativeSource Self},
                    Path=Height}"/>
-        <ItemsControl Grid.Row="4" ItemsSource="{Binding}" Margin="10">
+        <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Left" Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}">
+            <TextBlock TextWrapping="Wrap" >2- Model FindAncestor: In this case, a property of a given element will be tied to one of its parents, Of Corse. The main difference with the above case is the fact that, it's up to you to determine the ancestor type and the ancestor rank in the hierarchy to tie the property.</TextBlock>
+        </StackPanel>
+
+        <Canvas Grid.Row="5" Name="Parent0">
+            <Border Name="Parent1"
+                    Width="{Binding RelativeSource={RelativeSource Self},
+                 Path=Parent.ActualWidth}"
+                    Height="{Binding RelativeSource={RelativeSource Self},
+                 Path=Parent.ActualHeight}">
+                <Canvas Name="Parent2">
+                    <Border Name="Parent3"
+                            Width="{Binding RelativeSource={RelativeSource Self},
+               Path=Parent.ActualWidth}"
+                            Height="{Binding RelativeSource={RelativeSource Self},
+                  Path=Parent.ActualHeight}">
+                        <Canvas Name="Parent4">
+                            <TextBlock FontSize="16" 
+                                       Margin="5" Text="Display the name of the ancestor"/>
+                            <TextBlock FontSize="16" 
+                                       Margin="50" 
+                                       Text="{Binding RelativeSource={RelativeSource  
+                           FindAncestor,
+                           AncestorType={x:Type Border}, 
+                           AncestorLevel=2},Path=Name}" 
+                                       Width="200"/>
+                        </Canvas>
+                    </Border>
+                </Canvas>
+            </Border>
+        </Canvas>
+
+        <ItemsControl Grid.Row="6" ItemsSource="{Binding}" Margin="10">
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
