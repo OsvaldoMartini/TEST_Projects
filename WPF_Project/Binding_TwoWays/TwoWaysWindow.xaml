@@ -3,14 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModel="clr-namespace:Binding.Basics.TwoWays.ViewModel"
         Title="Page Title" Height="auto" Width="auto">
-        
 
     <Window.Resources>
         <viewModel:Person x:Key="PersonXAMLDataSource" FullName="Kishore1021"/>
         <viewModel:Person x:Key="Person1" FullName="Person1Name"/>
     </Window.Resources>
-
-
+    
     <Grid x:Name="modalGrid" DataContext="{Binding Path=EmployeeNameTest}">
         <Grid.Resources>
             <viewModel:Employee x:Key="myDataSource" EmployeeName="Osvaldo Martini"/>
@@ -21,11 +19,11 @@
         <DockPanel Grid.Row="0">
             <Grid x:Name="MainGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" >
                     <Label>Source have Priority above "DataContext" This is "{Binding Source={StaticResource myDataSource}, Path=EmployeeName, UpdateSourceTrigger=PropertyChanged}"</Label>

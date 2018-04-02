@@ -3,7 +3,9 @@ Binding RelativeSource
 Types of Binding
 StaticResources, DynamicResources and RelativeSource 
 
-I will expose the use cases of the RelativeSources in WPF. 
+I will expose the use cases of the RelativeSources in WPF.
+A rectangle that we want that its height is always equal to its width, a square let's say. We can do this using the element name
+Um retângulo que queremos que sua altura seja sempre igual a sua largura, um quadrado digamos. Nós podemos fazer isso usando o nome do elemento
 
 The RelativeSource is a markup extension that is used in particular binding cases when we try to:
 
