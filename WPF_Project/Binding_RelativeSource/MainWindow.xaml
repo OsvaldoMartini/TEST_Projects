@@ -38,7 +38,8 @@
                    Width="{Binding RelativeSource={RelativeSource Self},
                    Path=Height}"/>
         <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Left" Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}">
-            <TextBlock TextWrapping="Wrap" >2- Model FindAncestor: In this case, a property of a given element will be tied to one of its parents, Of Corse. The main difference with the above case is the fact that, it's up to you to determine the ancestor type and the ancestor rank in the hierarchy to tie the property.</TextBlock>
+            <TextBlock TextWrapping="Wrap" >2- Model FindAncestor: In this case, a property of a given element will be tied to one of its parents, Of Corse. The main difference with the above case is the fact that, it's up to you to determine the ancestor type and the ancestor rank in the hierarchy to tie the property. Change AncestorLevel=2 to AncestorLevel=1 and see what happens. Then try to change the type of the ancestor from AncestorType=Border to AncestorType=Canvas and see what's happens.
+            </TextBlock>
         </StackPanel>
 
         <Canvas Grid.Row="5" Name="Parent0">
@@ -60,8 +61,8 @@
                                        Margin="50" 
                                        Text="{Binding RelativeSource={RelativeSource  
                            FindAncestor,
-                           AncestorType={x:Type Border}, 
-                           AncestorLevel=2},Path=Name}" 
+                           AncestorType={x:Type Canvas}, 
+                           AncestorLevel=1},Path=Name}" 
                                        Width="200"/>
                         </Canvas>
                     </Border>

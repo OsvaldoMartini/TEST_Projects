@@ -20,8 +20,11 @@ The RelativeSource is a markup extension that is used in particular binding case
 	When we try to bind a property of a object to another one of its relative parents
 	
 	Neste caso, uma propriedade de um determinado elemento será vinculada a um de seus pais, Of Corse. 
+	
 	A principal diferença com o caso acima é o fato de que, cabe a você determinar o tipo de ancestral e o grau de ancestral na hierarquia para amarrar a propriedade.	
-
+    
+	Change AncestorLevel=2 to AncestorLevel=1 and see what happens. Then try to change the type of the ancestor from AncestorType=Border to AncestorType=Canvas and see what's happens.
+         
 3- TemplateParent
 
 	when binding a dependency property value to a piece of XAML in case of custom control development 
