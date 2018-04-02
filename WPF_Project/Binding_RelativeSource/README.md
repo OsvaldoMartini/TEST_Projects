@@ -13,6 +13,6 @@ The RelativeSource is a markup extension that is used in particular binding case
 
 3- when binding a dependency property value to a piece of XAML in case of custom control development 
 
-4- in case of using a differential of a series of a bound data. 
+4- 	in case of using a differential of a series of a bound data. 
 
 All of those situations are expressed as relative source modes.
