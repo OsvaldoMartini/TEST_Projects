@@ -30,6 +30,12 @@ namespace Modal {
             messages.MessageScreenTransfer = "Screen Transfer";
             messages.MessageId = 1;
 
+            UserViewModel user = new UserViewModel();
+            user.UserName = "User";
+            user.IsModified = false;
+
+            messages.UserViewModel = user;
+            
             this.DataContext = messages;
         }
 

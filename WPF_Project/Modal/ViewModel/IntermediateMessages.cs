@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using Modal.Interfaces;
+using Modal.Model;
 
 namespace Modal.ViewModel
 {
@@ -10,6 +12,14 @@ namespace Modal.ViewModel
         private int _messageId;
         private string _messageInternal;
         private string _messageScreenTransfer;
+        public List<Inventory> Inventory
+        {
+            get;
+            set;
+        }
+
+        public UserViewModel UserViewModel { get; set; }
+
 
         #region PropertyChangedEventHandler
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,6 +39,21 @@ namespace Modal.ViewModel
             _messageInternal =
                 _messageScreenTransfer =
                     null;
+
+            Inventory = new List<Inventory>();
+
+            for (int i = 1; i < 10; i++)
+            {
+                Inventory iv = new Inventory();
+                iv.Heading = "R" + i;
+                iv.Values = new List<string>();
+                for (int j = 0; j < 5; j++)
+                {
+                    iv.Values.Add("Pic");
+                }
+                Inventory.Add(iv);
+            }
+
         }
 
 
