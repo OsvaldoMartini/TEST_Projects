@@ -8,9 +8,9 @@ namespace HackModal.ModalDialog
 	/// <summary>
 	/// Interaction logic for ModalDialog.xaml
 	/// </summary>
-	public partial class ModalDialog : UserControl
+	public partial class HackModalWindow : UserControl
 	{
-		public ModalDialog()
+        public HackModalWindow()
 		{
 			InitializeComponent();
 			Visibility = Visibility.Hidden;
@@ -37,7 +37,7 @@ namespace HackModal.ModalDialog
 		// This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty MessageProperty =
 			DependencyProperty.Register(
-				"Message", typeof(string), typeof(ModalDialog), new UIPropertyMetadata(string.Empty));
+                "Message", typeof(string), typeof(HackModalWindow), new UIPropertyMetadata(string.Empty));
 
 		#endregion
 

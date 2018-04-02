@@ -4,20 +4,37 @@ using System.Windows.Controls;
 using Modal.Concrete;
 using Modal.Interfaces;
 using Modal.UserControls;
+using Modal.ViewModel;
 
 namespace Modal {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
 
-    public partial class Window1 : Window, IModalService {
+    public partial class ModalWindow : Window, IModalService
+    {
+        //If you get this example you'll get 90% of MVVM.
+        public IntermediateMessages MessagesModel { get; set; }
 
-        public Window1() {
+        public ModalWindow() {
             InitializeComponent();
+            SetDataContext();
+        }
+
+        public void SetDataContext()
+        {
+            //If you get this example you'll get 90% of MVVM.
+            IntermediateMessages messages = new IntermediateMessages();
+            
+            messages.MessageInternal = "Internal Message";
+            messages.MessageScreenTransfer = "Screen Transfer";
+            messages.MessageId = 1;
+
+            this.DataContext = messages;
         }
 
         private void ModalClick(object sender, RoutedEventArgs args) {
-            GlobalServices.ModalService.NavigateTo(new UserControl1(), delegate(bool returnValue) {
+            GlobalServices.ModalService.NavigateTo(new UserControl1(MessagesModel), delegate(bool returnValue) {
                 if (returnValue)
                     MessageBox.Show("Return value == true");
                 else

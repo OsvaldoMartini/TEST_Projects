@@ -1,5 +1,6 @@
 using System.Windows;
 using Modal.Concrete;
+using Modal.ViewModel;
 
 namespace Modal.UserControls {
     /// <summary>
@@ -7,8 +8,13 @@ namespace Modal.UserControls {
     /// </summary>
 
     public partial class UserControl1 : System.Windows.Controls.UserControl {
-        public UserControl1() {
+
+        //If you get this example you'll get 90% of MVVM.
+        public IntermediateMessages MessagesModel { get; set; }
+        public UserControl1(IntermediateMessages model) {
             InitializeComponent();
+
+            MessagesModel = model;
         }
 
         private void ButtonClick(object sender, RoutedEventArgs args) {
@@ -19,9 +25,7 @@ namespace Modal.UserControls {
         }
         private void Screen2_Click(object sender, RoutedEventArgs args)
         {
-            var objUControl2 = new UserControl2 {Message = txtSender.Text};
-
-            GlobalServices.ModalService.NavigateTo(objUControl2, delegate(bool returnValue)
+            GlobalServices.ModalService.NavigateTo(new UserControl2(MessagesModel), delegate(bool returnValue)
             {
                 if (returnValue)
                     MessageBox.Show("Return value == true");

@@ -1,21 +1,22 @@
 ﻿using System.Windows;
+using HackModal.ModalDialog;
 
 namespace HackModal
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+    public partial class MainWindow : Window
 	{
-		public MainWindow()
+        public MainWindow()
 		{
 			InitializeComponent();
-			ModalDialog.SetParent(ModalDialogParent);
+			HackModalWindow.SetParent(ModalDialogParent);
 		}
 
 		private void ShowModalDialog_Click(object sender, RoutedEventArgs e)
 		{
-            var res = ModalDialog.ShowHandlerDialog(txtMsgSender.Text);
+            var res = HackModalWindow.ShowHandlerDialog(txtMsgSender.Text);
 			var resultMessagePrefix = "Result: ";
 			if (res)
 				ResultText.Text = resultMessagePrefix + "Ok";

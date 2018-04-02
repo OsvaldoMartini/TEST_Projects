@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Binding.Basics.TwoWays.Concrete;
 using Binding.Basics.TwoWays.Interfaces;
+using Binding.Basics.TwoWays.ViewModel;
 
 namespace Binding.Basics.TwoWays
 {
@@ -13,21 +12,27 @@ namespace Binding.Basics.TwoWays
     /// Interaction logic for MainWindow.xaml
     /// </summary>
 
-    public partial class MainWindow : Window, IModalService
+    public partial class TwoWaysWindow : Window, IModalService
     {
-        public MainWindow()
+        public TwoWaysWindow()
         {
 
             InitializeComponent();
 
+            SetDataContext();
+
+
+        }
+
+        private void SetDataContext()
+        {
             //Set DataContext
             //var objstudent = new Student
             //{
             //    StudentName = "Osvaldo Martini",
             //    Address = "2 Weymouth Stree"
             //};
-            //this.DataContext = objstudent;
-
+            //this.DataContext = objstudent; 
 
             Employee employee = new Employee("Now the Priority is the DataContext");
             employee.State = "FL";
@@ -36,10 +41,12 @@ namespace Binding.Basics.TwoWays
             anotherClass.AnotherField = "Value Different 'Another Value'";
             this.DataContext = anotherClass;
 
+
         }
 
         private void GoTo_Person_Click(object sender, RoutedEventArgs e)
         {
+         
             GlobalServices.ModalService.NavigateTo(new PersonWindow(), delegate(bool returnValue)
             {
                 if (returnValue)
@@ -77,6 +84,12 @@ namespace Binding.Basics.TwoWays
         }
 
         #endregion
+
+        private void btnUpdateSource_Click(object sender, RoutedEventArgs e)
+        {
+            BindingExpression be = txtWindowTitle.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+        }
 
 
     }

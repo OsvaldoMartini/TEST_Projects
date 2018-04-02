@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 
-namespace Binding.Basics.TwoWays.Concrete
+namespace Binding.Basics.TwoWays.ViewModel
 {
     public class AnotherClass : INotifyPropertyChanged
 
@@ -30,6 +26,7 @@ namespace Binding.Basics.TwoWays.Concrete
             {
                 emp = value;
                 OnPropertyChanged("EmployeeNameTest");
+                Debug.WriteLine(EmployeeNameTest);
             }
         }
 

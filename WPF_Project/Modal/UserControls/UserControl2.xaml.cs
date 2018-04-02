@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Windows;
 using Modal.Concrete;
+using Modal.ViewModel;
 using Controls = System.Windows.Controls;
 
 namespace Modal.UserControls {
@@ -8,53 +9,21 @@ namespace Modal.UserControls {
     /// Interaction logic for UserControl2.xaml
     /// </summary>
 
-    public partial class UserControl2 : Controls.UserControl, INotifyPropertyChanged
+    public partial class UserControl2 : Controls.UserControl
     {
-        public UserControl2()
+
+        //If you get this example you'll get 90% of MVVM.
+        public IntermediateMessages MessagesModel { get; set; }
+
+        public UserControl2(IntermediateMessages model)
         {
             InitializeComponent();
+
+            //If you get this example you'll get 90% of MVVM.
+            MessagesModel = model;
         }
 
-        #region OnProperty Changed
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged == null) return;
-            var args = new PropertyChangedEventArgs(propertyName);
-            this.PropertyChanged(this, args);
-        }
-        #endregion
-
-        private string _messageScreenTransfer;
-
-        public string MessageScreenTransfer
-        {
-            get { return _messageScreenTransfer; }
-            set
-            {
-                _messageScreenTransfer = value;
-                OnPropertyChanged("MessageScreenTransfer");
-            }
-        }
-
-
-        #region Message
-
-        public string Message
-        {
-            get { return (string)GetValue(MessageProperty); }
-            set { SetValue(MessageProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Message.
-        // This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MessageProperty =
-            DependencyProperty.Register(
-                "Message", typeof(string), typeof(UserControl2), new UIPropertyMetadata(string.Empty));
-
-        #endregion
-
-        private void OkButton_Click(object sender, RoutedEventArgs args)
+      private void OkButton_Click(object sender, RoutedEventArgs args)
         {
             GlobalServices.ModalService.GoBackward(true);
         }

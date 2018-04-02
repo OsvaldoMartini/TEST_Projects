@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 
-namespace Binding.Basics.TwoWays.Concrete
+namespace Binding.Basics.TwoWays.ViewModel
 {
     // This class implements INotifyPropertyChanged to 
     // support one-way and two-way bindings
@@ -16,8 +12,19 @@ namespace Binding.Basics.TwoWays.Concrete
 
         private string state;
 
+        #region PropertyChangedEventHandler
         // Declare the event
         public event PropertyChangedEventHandler PropertyChanged;
+        //// Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        #endregion
 
         public Employee()
         {
@@ -36,6 +43,7 @@ namespace Binding.Basics.TwoWays.Concrete
                 name = value;
                 // Call OnPropertyChanged whenever the property is updated
                 OnPropertyChanged("EmployeeName");
+                Debug.WriteLine(EmployeeName);
             }
         }
 
@@ -49,14 +57,6 @@ namespace Binding.Basics.TwoWays.Concrete
             }
         }
 
-        //// Create the OnPropertyChanged method to raise the event
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
+
     }
 }

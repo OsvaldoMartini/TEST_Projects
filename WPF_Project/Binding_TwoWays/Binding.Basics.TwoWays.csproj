@@ -53,7 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="TwoWaysWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -61,14 +61,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Concrete\AnotherClass.cs" />
-    <Compile Include="Concrete\Employee.cs" />
+    <Compile Include="ViewModel\AnotherClass.cs" />
+    <Compile Include="ViewModel\Employee.cs" />
     <Compile Include="Concrete\GlobalServices.cs" />
-    <Compile Include="Concrete\Person.cs" />
-    <Compile Include="Concrete\Student.cs" />
+    <Compile Include="ViewModel\Person.cs" />
+    <Compile Include="Model\Student.cs" />
     <Compile Include="Interfaces\IModalService.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="TwoWaysWindow.xaml.cs">
+      <DependentUpon>TwoWaysWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PersonWindow.xaml">
