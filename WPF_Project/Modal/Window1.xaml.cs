@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Modal.Concrete;
 using Modal.Interfaces;
 using Modal.UserControls;
 
@@ -50,10 +51,5 @@ namespace Modal {
 
         #endregion
     }
-
-    public class GlobalServices {
-        public static IModalService ModalService {
-            get { return (IModalService) Application.Current.MainWindow; } 
-        }
-    }
+    
 }

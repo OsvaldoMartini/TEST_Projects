@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Windows;
+using Modal.Concrete;
 using Controls = System.Windows.Controls;
 
 namespace Modal.UserControls {

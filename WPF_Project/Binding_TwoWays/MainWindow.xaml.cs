@@ -1,74 +1,84 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Binding.Basics.TwoWays.Concrete;
+using Binding.Basics.TwoWays.Interfaces;
 
 namespace Binding.Basics.TwoWays
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
-    //Instead of "Window" we need to use INotifyPropertyChanged
-    public partial class MainWindow : INotifyPropertyChanged
+
+    public partial class MainWindow : Window, IModalService
     {
         public MainWindow()
         {
-            //Set DataContext
-            DataContext = this;
+
             InitializeComponent();
+
+            //Set DataContext
+            //var objstudent = new Student
+            //{
+            //    StudentName = "Osvaldo Martini",
+            //    Address = "2 Weymouth Stree"
+            //};
+            //this.DataContext = objstudent;
+
+
+            Employee employee = new Employee("Now the Priority is the DataContext");
+            employee.State = "FL";
+            AnotherClass anotherClass = new AnotherClass();
+            anotherClass.EmployeeNameTest = employee;
+            anotherClass.AnotherField = "Value Different 'Another Value'";
+            this.DataContext = anotherClass;
+
         }
 
-        //To Keep two UI Elements Syncronized with some Global Variable
-        private int _boundNumber;
-
-        public int BounderNumber
+        private void GoTo_Person_Click(object sender, RoutedEventArgs e)
         {
-            get { return _boundNumber;}
-            set
+            GlobalServices.ModalService.NavigateTo(new PersonWindow(), delegate(bool returnValue)
             {
-                if (_boundNumber != value)
-                {
-                    _boundNumber = value;
-                    OnPropertyChanged();
-                }
-            }
+                if (returnValue)
+                    MessageBox.Show("Return value == true");
+                else
+                    MessageBox.Show("Return value == false");
+            });
         }
 
-        //<TextBox Grid.Row="0" Text="{Binding Path=BoundNumber, Mode=TwoWay}"></TextBox>
-        //<TextBox Grid.Row="0" Text="{Binding Path=BoundNumber, Mode=TwoWay,NotifyOnSourceUpdated=true}"></TextBox>
 
+        #region IMainWindow Members
 
-        //Handler Property Changed All elements Know
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Stack<BackNavigationEventHandler> _backFunctions
+            = new Stack<BackNavigationEventHandler>();
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        void IModalService.NavigateTo(UserControl uc, BackNavigationEventHandler backFromDialog)
         {
-            //This Requires C# 6.0 Support Enabled / Capability 
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            foreach (UIElement item in modalGrid.Children)
+                item.IsEnabled = false;
+            modalGrid.Children.Add(uc);
+
+            _backFunctions.Push(backFromDialog);
         }
 
-        public string OldStylePropertyChanged
+        void IModalService.GoBackward(bool dialogReturnValue)
         {
-            get { return _boundNumber; }
-            set
-            {
-                if (value != _boundNumber)
-                {
-                    _boundNumber = value;
-                    OnPropertyChangedOldStyle("OldStylePropertyChanged");
-                }
-            }
-        }
-        private void OnPropertyChangedOldStyle(string propertyName)
-        {
-            var handler = PropertyChanged;
+            modalGrid.Children.RemoveAt(modalGrid.Children.Count - 1);
+
+            UIElement element = modalGrid.Children[modalGrid.Children.Count - 1];
+            element.IsEnabled = true;
+
+            BackNavigationEventHandler handler = _backFunctions.Pop();
             if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+                handler(dialogReturnValue);
         }
+
+        #endregion
+
 
     }
 }
+

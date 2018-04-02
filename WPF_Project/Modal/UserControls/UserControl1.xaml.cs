@@ -1,4 +1,5 @@
 using System.Windows;
+using Modal.Concrete;
 
 namespace Modal.UserControls {
     /// <summary>
