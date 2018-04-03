@@ -42,6 +42,7 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock Width="100" Text="Row 0"></TextBlock>
                             <TextBox Width="100" Text="{Binding Source={StaticResource myDataSource}, Path=MessageScreenTransfer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            <TextBox Width="100" Text="{Binding MessageScreenTransfer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         </StackPanel>
                     </Border>
                     <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1"  Grid.Row="1" >
