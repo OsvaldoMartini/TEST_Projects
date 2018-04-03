@@ -86,14 +86,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeList.cs" />
+    <Compile Include="ViewModel\Employee.cs" />
+    <Compile Include="ViewModel\EmployeeList.cs" />
     <Compile Include="NewEmployeeDetails.xaml.cs">
       <DependentUpon>NewEmployeeDetails.xaml</DependentUpon>
     </Compile>

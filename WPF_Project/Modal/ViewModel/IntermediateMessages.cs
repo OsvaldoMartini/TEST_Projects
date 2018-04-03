@@ -12,11 +12,7 @@ namespace Modal.ViewModel
         private int _messageId;
         private string _messageInternal;
         private string _messageScreenTransfer;
-        public List<Inventory> Inventory
-        {
-            get;
-            set;
-        }
+        public List<Inventory> Inventory{get;set;}
 
         public UserViewModel UserViewModel { get; set; }
 
@@ -39,7 +35,7 @@ namespace Modal.ViewModel
             _messageInternal =
                 _messageScreenTransfer =
                     null;
-
+            //Memory Leak
             Inventory = new List<Inventory>();
 
             for (int i = 1; i < 10; i++)

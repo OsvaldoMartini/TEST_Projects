@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:addNew="clr-namespace:Binding.StaticResource.AddNew"
     Title="Window1" Height="300" Width="300">
-    <Window.Resources>
+    <!--<Window.Resources>
         <addNew:EmployeeList x:Key="myEmployeeList">
             <addNew:Employee EmployeeNumber="1" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
             <addNew:Employee EmployeeNumber="2" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
@@ -11,8 +11,47 @@
             <addNew:Employee EmployeeNumber="4" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
             <addNew:Employee EmployeeNumber="5" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
         </addNew:EmployeeList>
-    </Window.Resources>
-    <Grid DataContext="{StaticResource myEmployeeList}">
+    </Window.Resources>-->
+
+    
+    <!--<StackPanel Orientation="Vertical" Height="Auto" Name="LayoutRoot" Width="Auto">
+        <Label Content="Employee ID" Margin="20,0,0,0" />
+        <ComboBox Name="employeeIDComboBox" DisplayMemberPath="EmployeeNumber" ItemsSource="{Binding}" 
+                  SelectionChanged="customerIDComboBox_SelectionChanged"
+                  IsSynchronizedWithCurrentItem="True" SelectedIndex="0" Height="23" Width="120" 
+                  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" />
+        <ListView ItemsSource="{Binding Path=employeeList}" Name="employeesDataGrid" Margin="34,46,34,50">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Line Items">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber, Mode=OneWay}" 
+                                    Header="Employee Number" Width="50"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName, Mode=TwoWay}" 
+                                    Header="First Name" Width="50"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName, Mode=TwoWay}" 
+                                    Header="Last Name" Width="50"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="saveChangesButton" Content="Save Changes" Click="saveChangesButton_Click" 
+                Width="80" Height="30" Margin="450,0,0,0"/>
+    </StackPanel>-->
+
+    <!--Exemplos the Binding directo list para testar
+
+<ListView Margin="8" Height="350" Width="500" ItemsSource="{Binding AlleKunden}">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=c_name}" Header="Name" Width="100"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=l_name}" Header="Standort" Width="100"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=a_town}" Header="Ort" Width="100"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=a_pcode}" Header="PLZ" Width="100"/>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=a_street}" Header="Straße" Width="100"/>
+            </GridView>
+        </ListView.View>
+    </ListView>-->
+
+    <!--<Grid DataContext="{StaticResource myEmployeeList}">-->
+    <Grid DataContext="{Binding EmployeeList}">
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
             <RowDefinition Height="*" />

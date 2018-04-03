@@ -4,5 +4,9 @@ namespace Binding.StaticResource.AddNew
 {
     public class EmployeeList : ObservableCollection<Employee>
     {
+        public EmployeeList()
+        {
+        }
+
     }
 }

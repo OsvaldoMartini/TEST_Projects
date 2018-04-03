@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Binding.StaticResource.AddNew.Model;
 
 namespace Binding.StaticResource.AddNew
 {
@@ -10,6 +12,8 @@ namespace Binding.StaticResource.AddNew
         string _lastName;
         string _department;
         string _title;
+        public List<Inventory> Inventory{get;set;}
+        public EmployeeList employeeList { get; set; }
 
         public Employee()
         {
@@ -18,6 +22,7 @@ namespace Binding.StaticResource.AddNew
                 _lastName =
                 _department =
                 _title = null;
+
         }
         public int EmployeeNumber
         {

@@ -71,6 +71,10 @@
     </ApplicationDefinition>
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Page Include="ResourceDictionary\DictionaryWithBrush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UserControl1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
