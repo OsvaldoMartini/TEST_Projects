@@ -9,10 +9,10 @@ using Binding.StaticResource.AddNew.Model;
 
 namespace Binding.StaticResource.AddNew.ViewModel
 {
-    public class ViewModel : ViewModelBase
+    public class ListFilesPath : ViewModelBase
     {
         #region Constructor
-        public ViewModel()
+        public ListFilesPath()
         {
             setFiles();
         }

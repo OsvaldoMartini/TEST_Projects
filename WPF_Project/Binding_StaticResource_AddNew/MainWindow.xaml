@@ -56,7 +56,7 @@
     </Window.DataContext>-->
 
     <Window.DataContext>
-        <viewModel1:ViewModel/>
+        <viewModel1:ListFilesPath/>
     </Window.DataContext>
 
 
