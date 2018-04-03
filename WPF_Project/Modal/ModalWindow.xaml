@@ -10,7 +10,7 @@
 
 
     <Viewbox Stretch="Fill">
-        <Grid x:Name="modalGrid"   Width="300" Height="300" >
+        <Grid x:Name="modalGrid"   Width="300" Height="400" >
             <Grid.Resources>
                 <!--<viewModel:IntermediateMessages x:Key="myDataSource" MessageScreenTransfer="Osvaldo Martini Transfering Message"/>-->
                 <viewModel:UserViewModel x:Key="UserDataSource" UserName="User: Osvaldo Martini"/>
