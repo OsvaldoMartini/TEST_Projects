@@ -12,7 +12,7 @@
     <Viewbox Stretch="Fill">
         <Grid x:Name="modalGrid"   Width="300" Height="300" >
             <Grid.Resources>
-                <!--<viewModel:IntermediateMessages x:Key="myDataSource" MessageScreenTransfer="Osvaldo Martini Transfering Message"/>-->
+                <viewModel:IntermediateMessages x:Key="myDataSource" MessageScreenTransfer="Osvaldo Martini Transfering Message"/>
                 <viewModel:UserViewModel x:Key="UserDataSource" UserName="User: Osvaldo Martini"/>
                 <BooleanToVisibilityConverter x:Key="boolToVisibility"/>
             </Grid.Resources>
@@ -41,7 +41,7 @@
                     <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1"  Grid.Row="0">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Width="100" Text="Row 0"></TextBlock>
-                            <TextBox Width="100" Text="{Binding Path=MessageScreenTransfer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            <TextBox Width="100" Text="{Binding Source={StaticResource myDataSource}, Path=MessageScreenTransfer, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         </StackPanel>
                     </Border>
                     <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1"  Grid.Row="1" >
