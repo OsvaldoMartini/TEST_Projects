@@ -19,14 +19,12 @@ namespace Binding.StaticResource.AddNew
 
 
             Loaded += OnLoaded;
-            //SetData();
+            SetData();
         }
 
         private void SetData()
         {
-           
-
-          employeeList = new EmployeeList();
+            var employeeList = new ObservableCollection<Employee>();
 
             employeeList.Add(new Employee
             {

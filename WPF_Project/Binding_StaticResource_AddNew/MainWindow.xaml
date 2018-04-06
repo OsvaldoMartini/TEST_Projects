@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:viewModel="clr-namespace:Binding.StaticResource.AddNew"
     xmlns:viewModel1="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
-    Title="Window1" Height="300" Width="300">
+    Title="Window1" Height="300" Width="Auto">
     <Window.Resources>
         <viewModel:EmployeeList x:Key="myEmployeeList">
             <viewModel:Employee EmployeeNumber="1" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
@@ -12,6 +12,94 @@
             <viewModel:Employee EmployeeNumber="4" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
             <viewModel:Employee EmployeeNumber="5" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
         </viewModel:EmployeeList>
+        <XmlDataProvider x:Key="FavoriteColors" XPath="Data/Colors">
+            <x:XData>
+                <Data xmlns="">
+                    <Colors>
+                        <Color Number="1">
+                            <Name>Blue</Name>
+                        </Color>
+                        <Color Number="2">
+                            <Name>Black</Name>
+                        </Color>
+                        <Color Number="3">
+                            <Name>Green</Name>
+                        </Color>
+                        <Color Number="4">
+                            <Name>Cyean</Name>
+                        </Color>
+                        <Color Number="5">
+                            <Name>White</Name>
+                        </Color>
+                        <Color Number="6">
+                            <Name>Pink</Name>
+                        </Color>
+                        <Color Number="7">
+                            <Name>Ocean</Name>
+                        </Color>
+                        <Color Number="8">
+                            <Name>Sky</Name>
+                        </Color>
+                        <Color Number="9">
+                            <Name>River</Name>
+                        </Color>
+                    </Colors>
+                </Data>
+            </x:XData>
+        </XmlDataProvider>
+        <XmlDataProvider x:Key="BooksData" XPath="Inventory/CDs">
+            <x:XData>
+                <Inventory xmlns="">
+                    <Books>
+                        <Book ISBN="0-7356-1370-2" Stock="in" Number="8" Category="Programming" >
+                            <Title>A Programmer's Guide to ADO.NET</Title>
+                            <Summary>Learn how to write database applications using ADO.NET and C#.
+                            </Summary>
+                            <Author>Mahesh Chand</Author>
+                            <Publisher>APress</Publisher>
+                        </Book>
+                        <Book ISBN="0-7356-0562-9" Stock="in" Number="9" Category="Programming" >
+                            <Title>Graphics Programming with GDI+</Title>
+                            <Summary>Learn how to write graphics applications using GDI+ and C#.
+                            </Summary>
+                            <Author>Mahesh Chand</Author>
+                            <Publisher>Addison Wesley</Publisher>
+                        </Book>
+                        <Book ISBN="0-7356-1288-9" Stock="out" Number="7" Category="Programming" >
+                            <Title>Visual C#</Title>
+                            <Summary>Learn how to write C# applications.
+                            </Summary>
+                            <Author>Mike Gold</Author>
+                            <Publisher>APress</Publisher>
+                        </Book>
+                        <Book ISBN="0-7356-1377-X" Stock="in" Number="5" Category="Programming" >
+                            <Title>Introducing Microsoft .NET</Title>
+                            <Summary>Programming .NET
+                            </Summary>
+                            <Author>Mathew Cochran</Author>
+                            <Publisher>APress</Publisher>
+                        </Book>
+                        <Book ISBN="0-7356-1448-2" Stock="out" Number="4" Category="Database" >
+                            <Title>DBA Express</Title>
+                            <Summary>DBA's Handbook
+                            </Summary>
+                            <Author>Mahesh Chand</Author>
+                            <Publisher>Microsoft</Publisher>
+                        </Book>
+                    </Books>
+                    <CDs>
+                        <CD Stock="in" Number="3">
+                            <Title>Classical Collection</Title>
+                            <Summary>Classical Music</Summary>
+                        </CD>
+                        <CD Stock="out" Number="9">
+                            <Title>Jazz Collection</Title>
+                            <Summary>Jazz Music</Summary>
+                        </CD>
+                    </CDs>
+                </Inventory>
+            </x:XData>
+        </XmlDataProvider>
     </Window.Resources>
 
 
@@ -60,8 +148,8 @@
     </Window.DataContext>
 
 
-    <!--<Grid DataContext="{StaticResource myEmployeeList}">-->
-    <Grid DataContext="{Binding }">
+    <Grid DataContext="{StaticResource myEmployeeList}">
+        <!--<Grid DataContext="{Binding }">-->
         <!--<Grid.Resources>
             <viewModel:Employee x:Key="UserDataSource" FirstName="User: Osvaldo Martini"/>
         </Grid.Resources>-->
@@ -77,6 +165,10 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -86,7 +178,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--<ListBox Name="employeeListBox"  ItemsSource="{Binding }" Grid.Row="0" />-->
         <Grid Grid.Row="0" Grid.Column="0" DataContext="{Binding ElementName=employeeListBox, Path=SelectedItem}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45*" />
@@ -102,15 +193,97 @@
             <Label Grid.Row="1" Grid.Column="0">Last Name</Label>
             <Label Grid.Row="2" Grid.Column="0">Title</Label>
             <Label Grid.Row="3" Grid.Column="0">Department</Label>
-
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName}" />
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName}" />
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Title}" />
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Department}" />
         </Grid>
         <Button Grid.Row="1" Grid.RowSpan="2" Width="100"  Name="cmdAddEmployee" Click="cmdAddEmployee_Click" Height="25" Margin="0,0,0,2" VerticalAlignment="Bottom">Add Employee</Button>
-
         <Grid Grid.Row="0" Grid.Column="1">
+            <ListBox Name="employeeListBox"  ItemsSource="{Binding }"/>
+            <!--<ListBox ItemsSource="{Binding FileObjectCollection}" 
+                 SelectedItem="{Binding SelectedFileObject}"/>-->
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <ListBox Name="ListBox1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
+                               HorizontalAlignment="Center">XML Data Binding
+                    </TextBlock>
+                    <!--<ListBox x:Name="LstXData" ItemsSource="{Binding Source={StaticResource FavoriteColors}, XPath=Data/Colors/Color}">
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                    </ListBox>-->
+
+                    <ListBox Width="400" Height="300" Background="LightGray">
+                        <ListBox.ItemsSource>
+                            <Binding Source="{StaticResource FavoriteColors}"
+                                     XPath="*[@Number>=5 or @Number=1]"/>
+                        </ListBox.ItemsSource>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Color: " FontWeight="Bold"/>
+                                    <TextBlock Foreground="Green"  >
+                                        <TextBlock.Text>
+                                            <Binding XPath="Name"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="4">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
+                           HorizontalAlignment="Center">XML Data Binding
+                    </TextBlock>
+
+                    <ListBox Width="400" Height="300" Background="LightGray">
+                        <ListBox.ItemsSource>
+                            <Binding Source="{StaticResource BooksData}"
+                                 XPath="*[@Stock='out'] | *[@Number>=5 or @Number=2]"/>
+                        </ListBox.ItemsSource>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Title: " FontWeight="Bold"/>
+                                    <TextBlock Foreground="Green"  >
+                                        <TextBlock.Text>
+                                            <Binding XPath="Title"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+            </Border>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="5">
+            <ListBox ItemsSource="{Binding FileObjectCollection}" 
+                     SelectedItem="{Binding SelectedFileObject}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="6">
             <ItemsControl ItemsSource="{Binding Inventory}" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -137,20 +310,20 @@
             </ItemsControl>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2">
-            <ListBox Name="ListBox1">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <Grid Grid.Row="0" Grid.Column="7">
+            <ListView Margin="8" Height="Auto" Width="Auto" ItemsSource="{Binding AlleKunden}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=c_name}" Header="Name" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=l_name}" Header="Standort" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=a_town}" Header="Ort" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=a_pcode}" Header="PLZ" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=a_street}" Header="Straße" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="3">
-            <ListBox ItemsSource="{Binding FileObjectCollection}" 
-                     SelectedItem="{Binding SelectedFileObject}"/>
-        </Grid>
 
     </Grid>
 </Window>
