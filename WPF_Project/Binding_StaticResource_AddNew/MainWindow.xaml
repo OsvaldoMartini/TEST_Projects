@@ -1,17 +1,18 @@
 ﻿<Window x:Class="Binding.StaticResource.AddNew.Window1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:viewModel="clr-namespace:Binding.StaticResource.AddNew"
-    xmlns:viewModel1="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
+    xmlns:viewModelAddNew="clr-namespace:Binding.StaticResource.AddNew"
+    xmlns:viewModelFilePath="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
     Title="Window1" Height="300" Width="Auto">
     <Window.Resources>
-        <viewModel:EmployeeList x:Key="myEmployeeList">
-            <viewModel:Employee EmployeeNumber="1" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
-            <viewModel:Employee EmployeeNumber="2" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
-            <viewModel:Employee EmployeeNumber="3" FirstName="Ralph" LastName="Emmerson" Title="QA Manager" Department="Product Development" />
-            <viewModel:Employee EmployeeNumber="4" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
-            <viewModel:Employee EmployeeNumber="5" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
-        </viewModel:EmployeeList>
+        <viewModelFilePath:ListFilesPath x:Key="FilePathList" />
+        <viewModelAddNew:EmployeeList x:Key="myEmployeeList">
+            <viewModelAddNew:Employee EmployeeNumber="1" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
+            <viewModelAddNew:Employee EmployeeNumber="2" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
+            <viewModelAddNew:Employee EmployeeNumber="3" FirstName="Ralph" LastName="Emmerson" Title="QA Manager" Department="Product Development" />
+            <viewModelAddNew:Employee EmployeeNumber="4" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
+            <viewModelAddNew:Employee EmployeeNumber="5" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
+        </viewModelAddNew:EmployeeList>
         <XmlDataProvider x:Key="FavoriteColors" XPath="Data/Colors">
             <x:XData>
                 <Data xmlns="">
@@ -134,27 +135,13 @@
                 Width="80" Height="30" Margin="450,0,0,0"/>
     </StackPanel>-->
 
-    <!--Exemplos the Binding directo list para testar
-
-<ListView Margin="8" Height="350" Width="500" ItemsSource="{Binding AlleKunden}">
-        <ListView.View>
-            <GridView>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=c_name}" Header="Name" Width="100"/>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=l_name}" Header="Standort" Width="100"/>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=a_town}" Header="Ort" Width="100"/>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=a_pcode}" Header="PLZ" Width="100"/>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=a_street}" Header="Straße" Width="100"/>
-            </GridView>
-        </ListView.View>
-    </ListView>-->
-
     <!--<Window.DataContext>
         <viewModel:EmployeeList />
     </Window.DataContext>-->
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewModel1:ListFilesPath/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
 
     <Grid DataContext="{StaticResource myEmployeeList}">
@@ -284,7 +271,7 @@
 
             </Border>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="5">
+        <Grid Grid.Row="0" Grid.Column="5" DataContext="{StaticResource FilePathList}">
             <ListBox ItemsSource="{Binding FileObjectCollection}" 
                      SelectedItem="{Binding SelectedFileObject}"/>
         </Grid>
