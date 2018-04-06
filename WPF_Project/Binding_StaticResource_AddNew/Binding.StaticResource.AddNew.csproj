@@ -93,6 +93,8 @@
     <Compile Include="Model\OrderItem.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\FileObject.cs" />
+    <Compile Include="Model\ListOfStrings.cs" />
+    <Compile Include="Utils\ListBoxExtender.cs" />
     <Compile Include="ViewModel\ListFilesPath.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

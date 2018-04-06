@@ -54,17 +54,17 @@ namespace Modal {
             = new Stack<BackNavigationEventHandler>();
 
         void IModalService.NavigateTo(UserControl uc, BackNavigationEventHandler backFromDialog) {
-            foreach (UIElement item in modalGrid.Children)
+            foreach (UIElement item in BaseModalGrid.Children)
                 item.IsEnabled = false;
-            modalGrid.Children.Add(uc);
+            BaseModalGrid.Children.Add(uc);
 
             _backFunctions.Push(backFromDialog);
         }
 
         void IModalService.GoBackward(bool dialogReturnValue) {
-            modalGrid.Children.RemoveAt(modalGrid.Children.Count - 1);
+            BaseModalGrid.Children.RemoveAt(BaseModalGrid.Children.Count - 1);
 
-            UIElement element = modalGrid.Children[modalGrid.Children.Count - 1];
+            UIElement element = BaseModalGrid.Children[BaseModalGrid.Children.Count - 1];
             element.IsEnabled = true;
 
             BackNavigationEventHandler handler = _backFunctions.Pop();

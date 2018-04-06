@@ -72,23 +72,27 @@
         <!--
             <viewModel:EmployeeList x:Key="EmployeeListSource"/>
         </Grid.Resources>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="45" />
-            <RowDefinition Height="45" />
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--<ListBox Name="employeeListBox"  ItemsSource="{Binding }" Grid.Row="0" />-->
-        <ListBox ItemsSource="{Binding FileObjectCollection}" 
-                 SelectedItem="{Binding SelectedFileObject}"/>
-
-
-        <Grid Grid.Row="1"  DataContext="{Binding ElementName=employeeListBox, Path=SelectedItem}">
+        <Grid Grid.Row="0" Grid.Column="0" DataContext="{Binding ElementName=employeeListBox, Path=SelectedItem}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="45*" />
+                <RowDefinition Height="45*" />
+                <RowDefinition Height="45*" />
+                <RowDefinition Height="45*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
@@ -104,9 +108,9 @@
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Title}" />
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Department}" />
         </Grid>
-        <Button Width="100"  Name="cmdAddEmployee" Grid.Row="1" Click="cmdAddEmployee_Click" Height="25" Margin="0,0,0,2" Grid.RowSpan="2" VerticalAlignment="Bottom">Add Employee</Button>
+        <Button Grid.Row="1" Grid.RowSpan="2" Width="100"  Name="cmdAddEmployee" Click="cmdAddEmployee_Click" Height="25" Margin="0,0,0,2" VerticalAlignment="Bottom">Add Employee</Button>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="0" Grid.Column="1">
             <ItemsControl ItemsSource="{Binding Inventory}" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -131,6 +135,21 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2">
+            <ListBox Name="ListBox1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="3">
+            <ListBox ItemsSource="{Binding FileObjectCollection}" 
+                     SelectedItem="{Binding SelectedFileObject}"/>
         </Grid>
 
     </Grid>
