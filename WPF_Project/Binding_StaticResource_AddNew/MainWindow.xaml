@@ -47,7 +47,7 @@
                 </Data>
             </x:XData>
         </XmlDataProvider>
-        <XmlDataProvider x:Key="BooksData" XPath="Inventory/CDs">
+        <XmlDataProvider x:Key="BooksData" XPath="Inventory/Books">
             <x:XData>
                 <Inventory xmlns="">
                     <Books>
@@ -100,6 +100,15 @@
                 </Inventory>
             </x:XData>
         </XmlDataProvider>
+
+        <Style x:Key="ListSelectStyle" TargetType="{x:Type ListBoxItem}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF9CC164"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF9CC164"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+            </Style.Resources>
+            <!--<Setter Property="Foreground" Value="WhiteSmoke"/>-->
+        </Style>
     </Window.Resources>
 
 
@@ -220,19 +229,14 @@
                     <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
                                HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
-                    <!--<ListBox x:Name="LstXData" ItemsSource="{Binding Source={StaticResource FavoriteColors}, XPath=Data/Colors/Color}">
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                    </ListBox>-->
-
-                    <ListBox Width="400" Height="300" Background="LightGray">
-                        <ListBox.ItemsSource>
+                        <ListBox Width="Auto
+                             " Height="Auto" Background="LightBlue"  ItemContainerStyle="{StaticResource ListSelectStyle}">
+                            <ListBox.ItemsSource>
                             <Binding Source="{StaticResource FavoriteColors}"
-                                     XPath="*[@Number>=5 or @Number=1]"/>
-                        </ListBox.ItemsSource>
+                                         XPath="*[@Number>=6 or @Number=1]"/>
+                            </ListBox.ItemsSource>
 
-                        <ListBox.ItemTemplate>
+                            <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Color: " FontWeight="Bold"/>
@@ -256,7 +260,8 @@
                            HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
 
-                    <ListBox Width="400" Height="300" Background="LightGray">
+                    <ListBox Width="Auto
+                             " Height="Auto" Background="LightBlue"  ItemContainerStyle="{StaticResource ListSelectStyle}">
                         <ListBox.ItemsSource>
                             <Binding Source="{StaticResource BooksData}"
                                  XPath="*[@Stock='out'] | *[@Number>=5 or @Number=2]"/>
