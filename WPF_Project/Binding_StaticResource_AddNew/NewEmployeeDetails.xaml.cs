@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Binding.StaticResource.AddNew.ViewModel;
 
 namespace Binding.StaticResource.AddNew
 {

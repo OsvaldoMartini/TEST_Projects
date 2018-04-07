@@ -2,10 +2,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:addNew="clr-namespace:Binding.StaticResource.AddNew"
+    xmlns:viewModel="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
     Title="NewEmployeeDetails" Height="182" Width="304" MinHeight="220" MaxHeight="220" Loaded="Window_Loaded">
     
     <Window.Resources>
-        <addNew:Employee x:Key="NewEmployee" />
+        <viewModel:Employee x:Key="NewEmployee" />
     </Window.Resources>    
     
     <Grid DataContext="{StaticResource NewEmployee}">

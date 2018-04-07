@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using Binding.StaticResource.AddNew.Model;
-using Binding.StaticResource.AddNew.ViewModel;
+using Binding.StaticResource.AddNew.Abstract;
 
-namespace Binding.StaticResource.AddNew
+namespace Binding.StaticResource.AddNew.ViewModel
 {
-    public class Employee : INotifyPropertyChanged
+    public class Employee : ViewModelBase
     {
         int _employeeNumber;
         string _firstName;

@@ -1,30 +1,59 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using Binding.StaticResource.AddNew.Abstract;
 using Binding.StaticResource.AddNew.Model;
 
 namespace Binding.StaticResource.AddNew.ViewModel
 {
-    public class EmployeeList : ObservableCollection<Employee>
+    public class EmployeeList : ViewModelBase
     {
-        public List<Inventory> Inventory { get; set; }
+        private Employee _selectedEmployeeObject;
+        public Employee SelectedEmployeeObject
+        {
+            get { return _selectedEmployeeObject; }
+            set
+            {
+                if (value != this._selectedEmployeeObject)
+                    _selectedEmployeeObject = value;
+                this.SetPropertyChanged("SelectedEmployeeObject");
+            }
+        }
+
+        private ObservableCollection<Employee> _employeeObjectCollection;
+        public ObservableCollection<Employee> EmployeeObjectCollection
+        {
+            get { return _employeeObjectCollection; }
+            set
+            {
+                if (value != this._employeeObjectCollection)
+                    _employeeObjectCollection = value;
+                this.SetPropertyChanged("EmployeeObjectCollection");
+            }
+        }
+
+        private ObservableCollection<Inventory> _inventoryObjectCollection;
+        public ObservableCollection<Inventory> InventoryObjectCollection
+        {
+            get { return _inventoryObjectCollection; }
+            set
+            {
+                if (value != this._inventoryObjectCollection)
+                    _inventoryObjectCollection = value;
+                this.SetPropertyChanged("InventoryObjectCollection");
+            }
+        }
         public EmployeeList()
         {
-            Inventory = new List<Inventory>();
 
-            for (int i = 1; i < 10; i++)
-            {
-                Inventory iv = new Inventory();
-                iv.Heading = "R" + i;
-                iv.Values = new List<string>();
-                for (int j = 0; j < 5; j++)
-                {
-                    iv.Values.Add("Pic");
-                }
-                Inventory.Add(iv);
-            }
+            SetFiles();
+        }
 
-
-            this.Add(new Employee
+        private void SetFiles()
+        {
+            this._employeeObjectCollection = new ObservableCollection<Employee>();
+            this._employeeObjectCollection.Add(new Employee
             {
                 EmployeeNumber = 1,
                 FirstName = "Osvaldo",
@@ -32,7 +61,7 @@ namespace Binding.StaticResource.AddNew.ViewModel
                 Title = "Software Architect",
                 Department = "Engineering Operation"
             });
-            this.Add(new Employee
+            this._employeeObjectCollection.Add(new Employee
             {
                 EmployeeNumber = 2,
                 FirstName = "Claudia",
@@ -40,7 +69,7 @@ namespace Binding.StaticResource.AddNew.ViewModel
                 Title = "Account Executive",
                 Department = "Engineering Operation"
             });
-            this.Add(new Employee
+            this._employeeObjectCollection.Add(new Employee
             {
                 EmployeeNumber = 3,
                 FirstName = "Oscar",
@@ -50,6 +79,13 @@ namespace Binding.StaticResource.AddNew.ViewModel
             });
 
         }
+
+        //private Action<Employee> SetFileObjectCollection()
+        //{
+        //    this._fileObjectCollection = new ObservableCollection<FileObject>();
+        //    return f => this._fileObjectCollection.Add(new FileObject { FileName = f.Name, Location = f.DirectoryName });
+        //}
+
 
     }
 }

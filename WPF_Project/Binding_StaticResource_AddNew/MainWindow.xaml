@@ -6,13 +6,14 @@
     Title="Window1" Height="600" Width="Auto">
     <Window.Resources>
         <viewModel:ListFilesPath x:Key="FilePathList" />
-        <viewModel:EmployeeList x:Key="MyEmployeeList">
-            <viewModelAddNew:Employee EmployeeNumber="4" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
-            <viewModelAddNew:Employee EmployeeNumber="5" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
-            <viewModelAddNew:Employee EmployeeNumber="6" FirstName="Ralph" LastName="Emmerson" Title="QA Manager" Department="Product Development" />
-            <viewModelAddNew:Employee EmployeeNumber="7" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
-            <viewModelAddNew:Employee EmployeeNumber="8" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
-        </viewModel:EmployeeList>
+        <viewModel:EmployeeList x:Key="EmployeeList"/>
+        <viewModel:EmployeeDirectContent x:Key="DirectContentEmployeeList">
+            <viewModel:Employee EmployeeNumber="4" FirstName="John" LastName="Dow" Title="Accountant" Department="Payroll" />
+            <viewModel:Employee EmployeeNumber="5" FirstName="Jane" LastName="Austin" Title="Account Executive" Department="Customer Management" />
+            <viewModel:Employee EmployeeNumber="6" FirstName="Ralph" LastName="Emmerson" Title="QA Manager" Department="Product Development" />
+            <viewModel:Employee EmployeeNumber="7" FirstName="Patrick" LastName="Fitzgerald" Title="QA Manager" Department="Product Development" />
+            <viewModel:Employee EmployeeNumber="8" FirstName="Charles" LastName="Dickens" Title="QA Manager" Department="Product Development" />
+        </viewModel:EmployeeDirectContent>
         <XmlDataProvider x:Key="FavoriteColors" XPath="Data/Colors">
             <x:XData>
                 <Data xmlns="">
@@ -174,7 +175,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" FontWeight="Bold" Margin="10" Foreground="Green"
-                       HorizontalAlignment="Center">Bound From lstBindingStatic
+                       HorizontalAlignment="Center">Bound Direct Content
             </TextBlock>
             <Label Grid.Row="1" Grid.Column="0">First Name</Label>
             <Label Grid.Row="2" Grid.Column="0">Last Name</Label>
@@ -187,11 +188,12 @@
             <Button Grid.Row="5" Grid.ColumnSpan="2" Width="100"  Name="cmdAddEmployee" Click="cmdAddEmployee_Click" Height="25" VerticalAlignment="Bottom">Add Employee</Button>
 
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="1" DataContext ="{StaticResource MyEmployeeList}">
+        <Grid Grid.Row="0" Grid.Column="1" DataContext ="{StaticResource DirectContentEmployeeList}">
             <ListBox Name="LstBindingStatic"  ItemsSource="{Binding }"/>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="2" DataContext="{StaticResource MyEmployeeList}">
-            <ListBox Name="LstBindingProperty"  ItemsSource="{Binding}"/>
+        <Grid Grid.Row="0" Grid.Column="2" DataContext="{StaticResource EmployeeList}">
+            <ListBox ItemsSource="{Binding EmployeeObjectCollection}" 
+                     SelectedItem="{Binding SelectedEmployeeObject}"/>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
             <ListBox Name="ListBox1">
@@ -266,7 +268,7 @@
             <ListBox ItemsSource="{Binding FileObjectCollection}" 
                      SelectedItem="{Binding SelectedFileObject}"/>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="7" DataContext="{StaticResource MyEmployeeList}">
+        <Grid Grid.Row="0" Grid.Column="7" DataContext="{StaticResource EmployeeList}">
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
 
