@@ -11,79 +11,63 @@ namespace Binding.StaticResource.AddNew.ViewModel
 {
     public class ListFilesPath : ViewModelBase
     {
-        #region Constructor
         public ListFilesPath()
         {
-            setFiles();
+            SetFiles();
         }
-        #endregion Constructor
-
-        #region Properties
-        #region SelectedFileObject
-        private FileObject selectedFileObjects;
+     
+        private FileObject _selectedFileObjects;
         public FileObject SelectedFileObject
         {
-            get { return selectedFileObjects; }
+            get { return _selectedFileObjects; }
             set
             {
-                if (value != this.selectedFileObjects)
-                    selectedFileObjects = value;
+                if (value != this._selectedFileObjects)
+                    _selectedFileObjects = value;
                 this.SetPropertyChanged("SelectedFileObject");
             }
         }
-        #endregion SelectedFileObject
-
-        #region FileObjectCollection
-        private ObservableCollection<FileObject> fileObjectCollection;
+     
+        private ObservableCollection<FileObject> _fileObjectCollection;
         public ObservableCollection<FileObject> FileObjectCollection
         {
-            get { return fileObjectCollection; }
+            get { return _fileObjectCollection; }
             set
             {
-                if (value != this.fileObjectCollection)
-                    fileObjectCollection = value;
+                if (value != this._fileObjectCollection)
+                    _fileObjectCollection = value;
                 this.SetPropertyChanged("FileObjectCollection");
             }
         }
-        #endregion FileObjectCollection
-
-        #region Path
+     
         //Use Your own path
-        private string path = @"D:\Projetos";
+        private string _path = @"D:\Projetos";
         public string Path
         {
-            get { return path; }
+            get { return _path; }
             set
             {
-                if (value != this.path)
-                    path = value;
+                if (value != this._path)
+                    _path = value;
                 this.SetPropertyChanged("Path");
             }
         }
-        #endregion Path
-        #endregion Properties
-
-        #region Mehods
-        #region void setFiles()
-        private void setFiles()
+     
+        private void SetFiles()
         {
-            if (this.path != string.Empty)
+            if (this._path != string.Empty)
             {
-                DirectoryInfo dInfo = new DirectoryInfo(this.path);
+                DirectoryInfo dInfo = new DirectoryInfo(this._path);
                 //use any extension you want.
                 FileInfo[] fInfo = dInfo.GetFiles("*.txt");
-                fInfo.Cast<FileInfo>().ToList().ForEach(setFileObjectCollection());
+                fInfo.Cast<FileInfo>().ToList().ForEach(SetFileObjectCollection());
             }
         }
-        #endregion void setFiles()
-
-        #region Action<FileInfo> setFileObjectCollection()
-        private Action<FileInfo> setFileObjectCollection()
+     
+        private Action<FileInfo> SetFileObjectCollection()
         {
-            this.fileObjectCollection = new ObservableCollection<FileObject>();
-            return f => this.fileObjectCollection.Add(new FileObject { FileName = f.Name, Location = f.DirectoryName });
+            this._fileObjectCollection = new ObservableCollection<FileObject>();
+            return f => this._fileObjectCollection.Add(new FileObject { FileName = f.Name, Location = f.DirectoryName });
         }
-        #endregion Action<FileInfo> setFileObjectCollection()
-        #endregion Mehods
     }
 }

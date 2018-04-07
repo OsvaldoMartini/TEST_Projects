@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Binding.StaticResource.AddNew.Model;
 
-namespace Binding.StaticResource.AddNew
+namespace Binding.StaticResource.AddNew.ViewModel
 {
     public class EmployeeList : ObservableCollection<Employee>
     {
@@ -22,6 +22,33 @@ namespace Binding.StaticResource.AddNew
                 }
                 Inventory.Add(iv);
             }
+
+
+            this.Add(new Employee
+            {
+                EmployeeNumber = 1,
+                FirstName = "Osvaldo",
+                LastName = "Martini",
+                Title = "Software Architect",
+                Department = "Engineering Operation"
+            });
+            this.Add(new Employee
+            {
+                EmployeeNumber = 2,
+                FirstName = "Claudia",
+                LastName = "Almeida",
+                Title = "Account Executive",
+                Department = "Engineering Operation"
+            });
+            this.Add(new Employee
+            {
+                EmployeeNumber = 3,
+                FirstName = "Oscar",
+                LastName = "Matias",
+                Title = "QA Manager",
+                Department = "Web Design"
+            });
+
         }
 
     }

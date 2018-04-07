@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Binding.StaticResource.AddNew.Model;
+using Binding.StaticResource.AddNew.ViewModel;
 
 namespace Binding.StaticResource.AddNew
 {
@@ -12,8 +13,6 @@ namespace Binding.StaticResource.AddNew
         string _lastName;
         string _department;
         string _title;
-        public List<Inventory> Inventory{get;set;}
-        public EmployeeList employeeList { get; set; }
 
         public Employee()
         {

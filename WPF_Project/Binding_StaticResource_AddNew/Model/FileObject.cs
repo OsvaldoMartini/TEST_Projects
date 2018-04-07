@@ -7,28 +7,28 @@ namespace Binding.StaticResource.AddNew.Model
     {
         #region Properties
         #region Location
-        private string location = string.Empty;
+        private string _location = string.Empty;
         public string Location
         {
-            get { return location; }
+            get { return _location; }
             set
             {
-                if (value != this.location)
-                    location = value;
+                if (value != this._location)
+                    _location = value;
                 this.SetPropertyChanged("Location");
             }
         }
         #endregion Location
 
         #region FileName
-        private string fileName = string.Empty;
+        private string _fileName = string.Empty;
         public string FileName
         {
-            get { return fileName; }
+            get { return _fileName; }
             set
             {
-                if (value != this.fileName)
-                    fileName = value;
+                if (value != this._fileName)
+                    _fileName = value;
                 this.SetPropertyChanged("FileName");
             }
         }
@@ -40,8 +40,8 @@ namespace Binding.StaticResource.AddNew.Model
         {
             //.FormatString(this string myString) is an extension.
             string returnString = string.Empty;
-            if (this.fileName != string.Empty)
-                returnString = String.Format("File Name: {0}.", this.fileName);
+            if (this._fileName != string.Empty)
+                returnString = string.Format("File Name: {0}.", this._fileName);
             return returnString;
         }
         #endregion String Override

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Binding.StaticResource.AddNew.Model;
+    using Binding.StaticResource.AddNew.Model;
+using Binding.StaticResource.AddNew.ViewModel;
 
-namespace Binding.StaticResource.AddNew
+namespace Binding.StaticResource.AddNew 
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
@@ -11,50 +12,30 @@ namespace Binding.StaticResource.AddNew
     public partial class Window1 : Window
     {
 
-        public EmployeeList employeeList { get; set; }
-        public List<Inventory> Inventory { get; set; }
+        public EmployeeList EmployeeListProperty { get; set; }
+        
+        private ObservableCollection<Person> _person;
+
+
         public Window1()
         {
             InitializeComponent();
 
 
             Loaded += OnLoaded;
-            SetData();
+            SetPersonCollection();
+
         }
 
-        private void SetData()
+        private void SetPersonCollection()
         {
-            var employeeList = new ObservableCollection<Employee>();
-
-            employeeList.Add(new Employee
+            _person = new ObservableCollection<Person>()
             {
-                EmployeeNumber = 1,
-                FirstName = "John",
-                LastName = "Dow",
-                Title = "Accountant",
-                Department = "Payroll"
-            });
-            employeeList.Add(new Employee
-            {
-                EmployeeNumber = 2,
-                FirstName = "Jane",
-                LastName = "Austin",
-                Title = "Account Executive",
-                Department = "Customer Management"
-            });
-            employeeList.Add(new Employee
-            {
-                EmployeeNumber = 3,
-                FirstName = "Ralph",
-                LastName = "Emmerson",
-                Title = "QA Manager",
-                Department = "Product Development"
-            });
+                new Person(){Name="Prabhat",Address="India"},
+                new Person(){Name="Smith",Address="US"}
+            };
+            lstNames.ItemsSource = _person;
         }
-
-      
-
-    
 
         private void cmdAddEmployee_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +70,14 @@ namespace Binding.StaticResource.AddNew
             }
 
             ListBox1.ItemsSource = messages;
+        }
+
+
+        private void btnNames_Click(object sender, RoutedEventArgs e)
+        {
+            _person.Add(new Person() { Name = txtName.Text, Address = txtAddress.Text });
+            txtName.Text = string.Empty;
+            txtAddress.Text = string.Empty;
         }
 
 

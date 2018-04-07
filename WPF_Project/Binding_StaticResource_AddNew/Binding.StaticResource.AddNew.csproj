@@ -91,6 +91,7 @@
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\FileObject.cs" />
     <Compile Include="Model\ListOfStrings.cs" />
