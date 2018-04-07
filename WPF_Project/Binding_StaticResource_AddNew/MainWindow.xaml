@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:viewModelAddNew="clr-namespace:Binding.StaticResource.AddNew"
     xmlns:viewModelFilePath="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
-    Title="Window1" Height="300" Width="Auto">
+    Title="Window1" Height="600" Width="Auto">
     <Window.Resources>
         <viewModelFilePath:ListFilesPath x:Key="FilePathList" />
         <viewModelAddNew:EmployeeList x:Key="myEmployeeList">
@@ -144,12 +144,7 @@
     </Window.DataContext>-->
 
 
-    <Grid DataContext="{StaticResource myEmployeeList}">
-        <!--<Grid DataContext="{Binding }">-->
-        <!--<Grid.Resources>
-            <viewModel:Employee x:Key="UserDataSource" FirstName="User: Osvaldo Martini"/>
-        </Grid.Resources>-->
-
+    <Grid>
         <!--<Grid.Resources>
             -->
         <!--<viewModel:IntermediateMessages x:Key="myDataSource" MessageScreenTransfer="Osvaldo Martini Transfering Message"/>-->
@@ -180,27 +175,29 @@
                 <RowDefinition Height="45*" />
                 <RowDefinition Height="45*" />
                 <RowDefinition Height="45*" />
+                <RowDefinition Height="45*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0">First Name</Label>
-            <Label Grid.Row="1" Grid.Column="0">Last Name</Label>
-            <Label Grid.Row="2" Grid.Column="0">Title</Label>
-            <Label Grid.Row="3" Grid.Column="0">Department</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=FirstName}" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=LastName}" />
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Title}" />
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Department}" />
-        </Grid>
-        <Button Grid.Row="1" Grid.RowSpan="2" Width="100"  Name="cmdAddEmployee" Click="cmdAddEmployee_Click" Height="25" Margin="0,0,0,2" VerticalAlignment="Bottom">Add Employee</Button>
-        <Grid Grid.Row="0" Grid.Column="1">
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" FontWeight="Bold" Margin="10" Foreground="Green"
+                       HorizontalAlignment="Center">Binding employeeListBox
+            </TextBlock>
+            <Label Grid.Row="1" Grid.Column="0">First Name</Label>
+            <Label Grid.Row="2" Grid.Column="0">Last Name</Label>
+            <Label Grid.Row="3" Grid.Column="0">Title</Label>
+            <Label Grid.Row="4" Grid.Column="0">Department</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=FirstName}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=LastName}" />
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Title}" />
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Department}" />
+         
+</Grid>
+        <Grid Grid.Row="0" Grid.Column="1" DataContext ="{StaticResource myEmployeeList}">
             <ListBox Name="employeeListBox"  ItemsSource="{Binding }"/>
-            <!--<ListBox ItemsSource="{Binding FileObjectCollection}" 
-                 SelectedItem="{Binding SelectedFileObject}"/>-->
-
         </Grid>
+        <Button Grid.Row="1" Grid.RowSpan="2" Width="100"  Name="cmdAddEmployee" Click="cmdAddEmployee_Click" Height="25" VerticalAlignment="Bottom">Add Employee</Button>
         <Grid Grid.Row="0" Grid.Column="2">
             <ListBox Name="ListBox1">
                 <ListBox.ItemTemplate>
@@ -216,14 +213,14 @@
                     <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
                                HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
-                        <ListBox Width="Auto
+                    <ListBox Width="Auto
                              " Height="Auto" Background="LightBlue"  ItemContainerStyle="{StaticResource ListSelectStyle}">
-                            <ListBox.ItemsSource>
+                        <ListBox.ItemsSource>
                             <Binding Source="{StaticResource FavoriteColors}"
                                          XPath="*[@Number>=6 or @Number=1]"/>
-                            </ListBox.ItemsSource>
+                        </ListBox.ItemsSource>
 
-                            <ListBox.ItemTemplate>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Color: " FontWeight="Bold"/>
@@ -246,7 +243,6 @@
                     <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
                            HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
-
                     <ListBox Width="Auto
                              " Height="Auto" Background="LightBlue"  ItemContainerStyle="{StaticResource ListSelectStyle}">
                         <ListBox.ItemsSource>
