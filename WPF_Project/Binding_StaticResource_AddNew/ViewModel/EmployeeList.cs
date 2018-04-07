@@ -53,6 +53,7 @@ namespace Binding.StaticResource.AddNew.ViewModel
         private void SetFiles()
         {
             this._employeeObjectCollection = new ObservableCollection<Employee>();
+            
             this._employeeObjectCollection.Add(new Employee
             {
                 EmployeeNumber = 1,
@@ -77,6 +78,22 @@ namespace Binding.StaticResource.AddNew.ViewModel
                 Title = "QA Manager",
                 Department = "Web Design"
             });
+
+
+            this._inventoryObjectCollection = new ObservableCollection<Inventory>();
+            for (int i = 1; i < 10; i++)
+            {
+                Inventory iv = new Inventory();
+                iv.Heading = "R" + i;
+                iv.Values = new List<string>();
+                for (int j = 0; j < 5; j++)
+                {
+                    iv.Values.Add("Pic");
+                }
+
+                this._inventoryObjectCollection.Add(iv);
+            }
+
 
         }
 
