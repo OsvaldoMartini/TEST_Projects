@@ -4,6 +4,7 @@ using System.Windows;
 using Binding.StaticResource.AddNew.ViewModel;
 using System.Text;
 using Binding.StaticResource.AddNew.Utils;
+using Modules_ViewModel;
 
 
 namespace Binding.StaticResource.AddNew 
@@ -32,6 +33,16 @@ namespace Binding.StaticResource.AddNew
 
             SettingObservableEvents();
 
+            SetUserModule_ViewModel();
+
+        }
+
+        private void SetUserModule_ViewModel()
+        {
+            UserViewModel user = new UserViewModel();
+            user.UserName = "User";
+            user.IsModified = false;
+            DataContext = user;
         }
 
         private void SettingObservableEvents()

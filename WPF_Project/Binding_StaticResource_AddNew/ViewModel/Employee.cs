@@ -86,7 +86,9 @@ namespace Binding.StaticResource.AddNew.ViewModel
         }
 
         #region INotifyPropertyChanged Members
-
+        
+        //hides inherited member, Use the new keyword if hiding was intended.
+        //public new event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion

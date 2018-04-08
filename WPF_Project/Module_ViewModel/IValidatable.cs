@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ViewModel
+namespace Modules_ViewModel
 {
     public interface IValidatable : IDataErrorInfo
     {

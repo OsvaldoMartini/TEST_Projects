@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel
+namespace Modules_ViewModel
 {
     public class UserViewModel : ViewModel
     {

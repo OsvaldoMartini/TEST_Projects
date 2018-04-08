@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ViewModel
+namespace Modules_ViewModel
 {
     public abstract class ViewModel :Validatable, IViewModel
     {

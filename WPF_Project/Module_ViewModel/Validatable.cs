@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace ViewModel
+namespace Modules_ViewModel
 {
     public abstract class Validatable : IValidatable
     {
