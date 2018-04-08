@@ -5,12 +5,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Binding.StaticResource.AddNew")]
+[assembly: AssemblyTitle("Modules_ViewModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Binding.StaticResource.AddNew")]
-[assembly: AssemblyCopyright("Copyright © Osvaldo Martini 2008")]
+[assembly: AssemblyProduct("Modules_ViewModel")]
+[assembly: AssemblyCopyright("Copyright © Osvaldo Martini 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

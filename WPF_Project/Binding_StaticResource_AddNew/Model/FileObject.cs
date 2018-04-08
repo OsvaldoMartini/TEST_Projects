@@ -1,5 +1,4 @@
-﻿using System;
-using Binding.StaticResource.AddNew.Abstract;
+﻿using Binding.StaticResource.AddNew.Abstract;
 
 namespace Binding.StaticResource.AddNew.Model
 {

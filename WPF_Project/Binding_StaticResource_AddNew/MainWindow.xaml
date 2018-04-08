@@ -5,6 +5,7 @@
     xmlns:viewModel="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
     Title="Window1" Height="600" Width="Auto">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibility"/>
         <viewModel:ListFilesPath x:Key="FilePathList" />
         <viewModel:EmployeeList x:Key="EmployeeList"/>
         <viewModel:EmployeeDirectContent x:Key="DirectContentEmployeeList">
@@ -310,9 +311,20 @@
                 <TextBox Name="tboxLog" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
             </DockPanel>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="5">
+            <StackPanel Width="Auto">
+                <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Margin="5"/>
+                <Button Content="Save" 
+                        Visibility="{Binding IsModified, Converter={StaticResource boolToVisibility}}"
+                        IsEnabled="{Binding IsValid}"/>
+                <Button Content="Cancel" 
+                        Visibility="{Binding IsModified, Converter={StaticResource boolToVisibility}}"/>
+            </StackPanel>
+        </Grid>
 
-        
-        <!--<StackPanel Orientation="Vertical" Height="Auto" Name="LayoutRoot" Width="Auto">
+
+<!--<StackPanel Orientation="Vertical" Height="Auto" Name="LayoutRoot" Width="Auto">
         <Label Content="Employee ID" Margin="20,0,0,0" />
         <ComboBox Name="employeeIDComboBox" DisplayMemberPath="EmployeeNumber" ItemsSource="{Binding}" 
                   SelectionChanged="customerIDComboBox_SelectionChanged"
