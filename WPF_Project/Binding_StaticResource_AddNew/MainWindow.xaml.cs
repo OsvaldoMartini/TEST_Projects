@@ -40,7 +40,6 @@ namespace Binding.StaticResource.AddNew
 
             GridAuthors.ItemsSource = LoadCollectionData();
 
-
         }
 
         private void SetUserModule_ViewModel()
@@ -259,6 +258,7 @@ namespace Binding.StaticResource.AddNew
                 DOB = new DateTime(1985, 9, 11),
                 IsMVP = true
             });
+
             return authors;
         }
 
@@ -273,10 +273,6 @@ namespace Binding.StaticResource.AddNew
         {
         
         }
-
-
-
-
 
     }
 

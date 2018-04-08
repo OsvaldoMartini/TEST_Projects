@@ -16,7 +16,7 @@
         <ObjectDataProvider x:Key="ListOfStrings" ObjectType="{x:Type model:ListOfStrings}"/>
         <ObjectDataProvider x:Key="ListOfDrinks" ObjectInstance="{StaticResource ListOfStrings}" MethodName="GetListOfDrinks" />
 
-<BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         <viewModel:ListFilesPath x:Key="FilePathList" />
         <viewModel:EmployeeList x:Key="EmployeeList"/>
         <viewModel:EmployeeDirectContent x:Key="DirectContentEmployeeList">
@@ -119,7 +119,7 @@
             <Style.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF9CC164"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF9CC164"/>
-                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="PaleVioletRed"/>
             </Style.Resources>
             <!--<Setter Property="Foreground" Value="WhiteSmoke"/>-->
         </Style>
@@ -130,7 +130,7 @@
         <DataTemplate x:Key="GridColumnTemplate">
             <TextBlock HorizontalAlignment="Center" 
                        Text="{Binding Path=CustomerID}"/>
-                       <!--Text="{Binding XPath=@CustomerID}"/>-->
+            <!--Text="{Binding XPath=@CustomerID}"/>-->
         </DataTemplate>
         <DataTemplate x:Key="OrangeHeaderTemplate">
             <DockPanel>
@@ -143,10 +143,11 @@
                 </TextBlock>
             </DockPanel>
         </DataTemplate>
-</Window.Resources>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -212,7 +213,7 @@
         <Grid Grid.Row="0" Grid.Column="4">
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
+                    <TextBlock FontSize="14" FontWeight="Bold" Margin="10" Foreground="Green"
                                HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
                     <ListBox Width="Auto
@@ -242,7 +243,7 @@
         <Grid Grid.Row="0" Grid.Column="5">
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="18" FontWeight="Bold" Margin="10" Foreground="Green"
+                    <TextBlock FontSize="14" FontWeight="Bold" Margin="10" Foreground="Green"
                            HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
                     <ListBox Width="Auto
@@ -266,7 +267,6 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
-
             </Border>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="6" DataContext="{StaticResource FilePathList}">
@@ -306,33 +306,33 @@
         </Grid>
         <Grid Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" DataContext="{Binding Source= {StaticResource Customers}}">
             <ListView ItemsSource="{Binding}">
-            <ListView.View>
-                <GridView AllowsColumnReorder="true"
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true"
                           ColumnHeaderToolTip="Employee Information">
 
-                    <GridViewColumn DisplayMemberBinding=
+                        <GridViewColumn DisplayMemberBinding=
                                     "{Binding Path=Name}" 
                                     Header="First Name" Width="50"/>
 
-                    <GridViewColumn DisplayMemberBinding=
+                        <GridViewColumn DisplayMemberBinding=
                                     "{Binding Path=Date}" Width="50">
-                        <GridViewColumnHeader>Date
-                            <GridViewColumnHeader.ContextMenu>
-                                <ContextMenu  MenuItem.Click="LastNameCM_Click"  
+                            <GridViewColumnHeader>Date
+                                <GridViewColumnHeader.ContextMenu>
+                                    <ContextMenu  MenuItem.Click="LastNameCM_Click"  
                                               Name="LastNameCm">
-                                    <MenuItem Header="Ascending" />
-                                    <MenuItem Header="Descending" />
-                                </ContextMenu>
-                            </GridViewColumnHeader.ContextMenu>
-                        </GridViewColumnHeader>
-                    </GridViewColumn>
+                                        <MenuItem Header="Ascending" />
+                                        <MenuItem Header="Descending" />
+                                    </ContextMenu>
+                                </GridViewColumnHeader.ContextMenu>
+                            </GridViewColumnHeader>
+                        </GridViewColumn>
 
                         <GridViewColumn Header="Customer No." Width="50" 
                                     CellTemplate="{StaticResource GridColumnTemplate}"/>
-                </GridView>
+                    </GridView>
 
-            </ListView.View>
-                </ListView>
+                </ListView.View>
+            </ListView>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -393,18 +393,17 @@
                         Visibility="{Binding IsModified, Converter={StaticResource BoolToVisibility}}"/>
             </StackPanel>
         </Grid>
-       
 
-        <Grid Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="3">
+
+        <Grid Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <DataGrid Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="5,2,0,0" 
-                      Name="GridAuthors" VerticalAlignment="Top" ColumnWidth="100" 
+                    <DataGrid Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="5,2,0,0" 
+                      Name="GridAuthors" ColumnWidth="100" 
                       ColumnHeaderHeight="30" HeadersVisibility="Column"
-                      Background="LightGray" RowBackground="LightYellow" 
-                      AlternatingRowBackground="LightBlue"
+                      Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
                       BorderBrush="Gray" BorderThickness="5" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}">
@@ -447,7 +446,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Row="1" Content="Change Row Color" Height="23" HorizontalAlignment="Left" Margin="12,77,0,0"
+
+            <Button Grid.Row="1" Content="Change Row Color" Height="23" HorizontalAlignment="Left" Margin="12,5,0,0"
                 Name="RowColorButton" VerticalAlignment="Top" Width="116" Click="RowColorButton_Click" />
         </Grid>
         <!--<StackPanel Orientation="Vertical" Height="Auto" Name="LayoutRoot" Width="Auto">
