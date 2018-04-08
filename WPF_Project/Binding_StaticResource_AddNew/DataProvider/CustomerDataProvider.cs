@@ -39,12 +39,12 @@ namespace Binding.StaticResource.AddNew.DataProvider
         static DataTable TableCustomer()
         {
             DataTable table = new DataTable("Customer");
-            table.Columns.Add("customerID", typeof(int));
-            table.Columns.Add("name", typeof(string));
+            table.Columns.Add("CustomerID", typeof(int));
+            table.Columns.Add("Name", typeof(string));
             table.Columns.Add("Date", typeof(DateTime));
 
             table.Rows.Add(25, "David", DateTime.Now);
-            table.Rows.Add(50,  "Sam", DateTime.Now);
+            table.Rows.Add(50, "Sam", DateTime.Now);
             table.Rows.Add(10, "Christoff", DateTime.Now);
             table.Rows.Add(21,  "Janet", DateTime.Now);
             table.Rows.Add(100, "Melanie", DateTime.Now);

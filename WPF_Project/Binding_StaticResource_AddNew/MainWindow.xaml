@@ -116,6 +116,15 @@
             </Style.Resources>
             <!--<Setter Property="Foreground" Value="WhiteSmoke"/>-->
         </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <DataTemplate x:Key="GridColumnTemplate">
+            <TextBlock HorizontalAlignment="Center" 
+                       Text="{Binding Path=CustomerID}"/>
+                       <!--Text="{Binding XPath=@CustomerID}"/>-->
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -277,14 +286,46 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2">
-            <DockPanel DataContext="{Binding Source={StaticResource Customers}}">
-                <DataGrid Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="10,5,0,0" 
+        <Grid Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" DataContext="{Binding Source= {StaticResource Customers}}">
+            <ListView ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true"
+                          ColumnHeaderToolTip="Employee Information">
+
+                    <GridViewColumn DisplayMemberBinding=
+                                    "{Binding Path=Name}" 
+                                    Header="First Name" Width="50"/>
+
+                    <GridViewColumn DisplayMemberBinding=
+                                    "{Binding Path=Date}" Width="50">
+                        <GridViewColumnHeader>Date
+                            <GridViewColumnHeader.ContextMenu>
+                                <ContextMenu  MenuItem.Click="LastNameCM_Click"  
+                                              Name="LastNameCm">
+                                    <MenuItem Header="Ascending" />
+                                    <MenuItem Header="Descending" />
+                                </ContextMenu>
+                            </GridViewColumnHeader.ContextMenu>
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+
+                        <GridViewColumn Header="Customer No." Width="50" 
+                                    CellTemplate="{StaticResource GridColumnTemplate}"/>
+                </GridView>
+
+            </ListView.View>
+                </ListView>
+
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0" DataContext="{Binding Source={StaticResource Customers}}" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="10,5,0,0" 
                     VerticalAlignment="Top" RowHeight="30" ColumnWidth="Auto" 
                   ColumnHeaderHeight="30" HeadersVisibility="Column" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
                   BorderBrush="Gray" BorderThickness="5" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}" >
+                        <DataGridTextColumn Header="Name" Width="80" Binding="{Binding FirstName}" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap"/>
@@ -295,9 +336,9 @@
                                     <Setter Property="Foreground" Value="Blue"/>
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>
+                        </DataGridTextColumn>-->
 
-                        <DataGridTemplateColumn Header="Date">
+                        <!--<DataGridTemplateColumn Header="Date">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Date}" Margin="4"/>
@@ -308,13 +349,10 @@
                                     <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
+                        </DataGridTemplateColumn>-->
 
-                    </DataGrid.Columns>
-
-
-                </DataGrid>
-            </DockPanel>
+                    <!--</DataGrid.Columns>
+                </DataGrid>-->
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -396,6 +434,7 @@
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap"/>
+                                <!--<Setter Property="TextBlock.TextAlignment" Value="Center"/>-->
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                         <DataGridTextColumn.EditingElementStyle>

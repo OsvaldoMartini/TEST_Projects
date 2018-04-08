@@ -264,6 +264,13 @@ namespace Binding.StaticResource.AddNew
             Author author = (Author)GridAuthors.SelectedItem;
             if (author != null)
                 MessageBox.Show("Selected author: " + author.Name);
+        }
+
+        private void LastNameCM_Click(object sender, RoutedEventArgs e)
+        {
+            Author author = (Author)GridAuthors.SelectedItem;
+            if (author != null)
+                MessageBox.Show("Selected author: " + author.Name);
         } 
     }
 
