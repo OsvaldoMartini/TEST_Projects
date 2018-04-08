@@ -54,7 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="CustomCtrlToolTip.cs">
+    <Compile Include="ColorPickerControl.cs">
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControl_ToolTip.xaml">
