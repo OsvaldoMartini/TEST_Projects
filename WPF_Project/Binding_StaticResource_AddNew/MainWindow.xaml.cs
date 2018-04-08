@@ -111,7 +111,7 @@ namespace Binding.StaticResource.AddNew
                 messages.Add("this text should be visible by vertical scrollbars only");
             }
 
-            ListBox1.ItemsSource = messages;
+            LstOnLoaded.ItemsSource = messages;
         }
 
 

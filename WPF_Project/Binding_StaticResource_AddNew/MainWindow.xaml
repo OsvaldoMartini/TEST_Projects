@@ -167,7 +167,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" DataContext="{Binding ElementName=LstBindingStatic, Path=SelectedItem}">
+        <Grid Grid.Row="0" Grid.Column="0" DataContext="{Binding ElementName=LstBindingStatic, Path=SelectedItem}" Height="284" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45*" />
                 <RowDefinition Height="45*" />
@@ -180,7 +180,7 @@
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="12" FontWeight="Bold" Margin="10" Foreground="Green"
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green"
                        HorizontalAlignment="Center">Bound Direct Content
             </TextBlock>
             <Label Grid.Row="1" Grid.Column="0">First Name</Label>
@@ -195,25 +195,41 @@
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" DataContext ="{StaticResource DirectContentEmployeeList}">
-            <ListBox Name="LstBindingStatic"  ItemsSource="{Binding }"/>
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="5" Foreground="Green"
+                       HorizontalAlignment="Center">Bound Direct Content
+                </TextBlock>
+                <ListBox Name="LstBindingStatic"  Margin="5" ItemsSource="{Binding }"/>
+            </StackPanel>
+
         </Grid>
         <Grid Grid.Row="0" Grid.Column="2" DataContext="{StaticResource EmployeeList}">
-            <ListBox ItemsSource="{Binding EmployeeObjectCollection}" 
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="5" Foreground="Green" TextWrapping="Wrap"
+                           HorizontalAlignment="Center">Bound From Class Parent List "EmployeeList"
+                </TextBlock>
+                <ListBox ItemsSource="{Binding EmployeeObjectCollection}" 
                      SelectedItem="{Binding SelectedEmployeeObject}"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
-            <ListBox Name="ListBox1">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="5" Foreground="Green"
+                           HorizontalAlignment="Center">Bound from Code Behind
+                </TextBlock>
+                <ListBox Name="LstOnLoaded">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="4">
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="14" FontWeight="Bold" Margin="10" Foreground="Green"
+                    <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green"
                                HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
                     <ListBox Width="Auto
@@ -243,7 +259,7 @@
         <Grid Grid.Row="0" Grid.Column="5">
             <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="14" FontWeight="Bold" Margin="10" Foreground="Green"
+                    <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green"
                            HorizontalAlignment="Center">XML Data Binding
                     </TextBlock>
                     <ListBox Width="Auto
@@ -270,79 +286,115 @@
             </Border>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="6" DataContext="{StaticResource FilePathList}">
-            <ListBox ItemsSource="{Binding FileObjectCollection}" 
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="5" Foreground="Green"
+                           HorizontalAlignment="Center">Bound from Class
+                </TextBlock>
+                <ListBox ItemsSource="{Binding FileObjectCollection}" 
                      SelectedItem="{Binding SelectedFileObject}"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="7" DataContext="{StaticResource EmployeeList}">
-            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
-                <StackPanel Orientation="Vertical">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="5" Foreground="Green" TextWrapping="WrapWithOverflow"
+                           HorizontalAlignment="Center">Chield Object List "EmployeeList"
+                </TextBlock>
 
-                    <ItemsControl ItemsSource="{Binding InventoryObjectCollection}" >
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Content="{Binding Heading}" BorderThickness="2, 0, 2, 2" BorderBrush="Black"/>
-                                    <ItemsControl ItemsSource="{Binding Values}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Label Content="{Binding}" BorderThickness="0, 0, 2, 2" BorderBrush="Black"/>
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
 
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
+                        <ItemsControl ItemsSource="{Binding InventoryObjectCollection}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Content="{Binding Heading}" BorderThickness="2, 0, 2, 2" BorderBrush="Black"/>
+                                        <ItemsControl ItemsSource="{Binding Values}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="{Binding}" BorderThickness="0, 0, 2, 2" BorderBrush="Black"/>
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" DataContext="{Binding Source= {StaticResource Customers}}">
-            <ListView ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true"
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                       HorizontalAlignment="Center">ObjectDataProvider ListView and GridView
+                </TextBlock>
+                <ListView ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true"
                           ColumnHeaderToolTip="Employee Information">
 
-                        <GridViewColumn DisplayMemberBinding=
+                            <GridViewColumn DisplayMemberBinding=
                                     "{Binding Path=Name}" 
                                     Header="First Name" Width="50"/>
 
-                        <GridViewColumn DisplayMemberBinding=
+                            <GridViewColumn DisplayMemberBinding=
                                     "{Binding Path=Date}" Width="50">
-                            <GridViewColumnHeader>Date
-                                <GridViewColumnHeader.ContextMenu>
-                                    <ContextMenu  MenuItem.Click="LastNameCM_Click"  
+                                <GridViewColumnHeader>Date
+                                    <GridViewColumnHeader.ContextMenu>
+                                        <ContextMenu  MenuItem.Click="LastNameCM_Click"  
                                               Name="LastNameCm">
-                                        <MenuItem Header="Ascending" />
-                                        <MenuItem Header="Descending" />
-                                    </ContextMenu>
-                                </GridViewColumnHeader.ContextMenu>
-                            </GridViewColumnHeader>
-                        </GridViewColumn>
+                                            <MenuItem Header="Ascending" />
+                                            <MenuItem Header="Descending" />
+                                        </ContextMenu>
+                                    </GridViewColumnHeader.ContextMenu>
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
 
-                        <GridViewColumn Header="Customer No." Width="50" 
+                            <GridViewColumn Header="Customer No." Width="50" 
                                     CellTemplate="{StaticResource GridColumnTemplate}"/>
-                    </GridView>
+                        </GridView>
 
-                </ListView.View>
-            </ListView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="10" >
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green"
+                           HorizontalAlignment="Center">ObjectDataProvider
+                </TextBlock>
+                <ListBox Margin="20" ItemsSource="{Binding Source= {StaticResource ListOfDrinks}}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5">
+            <TextBlock FontSize="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                           HorizontalAlignment="Center">User Name Add By "ObservableCollection"
+            </TextBlock>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,5,5,5">
                 <TextBlock x:Name="lblName" Text="Name"></TextBlock>
                 <TextBox x:Name="txtName"></TextBox>
                 <TextBlock x:Name="lblAddress" Text="Address"></TextBlock>
@@ -350,7 +402,7 @@
                 <Button Grid.Column="0" Width="100" Height="20" Margin="5,5,5,5" x:Name="btnNames" Click="btnNames_Click" Content="Add"></Button>
             </StackPanel>
 
-            <ListView x:Name="lstNames" Margin="5,5,5,5" Grid.Column="1" Grid.Row="0">
+            <ListView x:Name="lstNames" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" >
                 <ListView.View>
                     <GridView x:Name="grdNames">
                         <GridViewColumn Header="Name"  DisplayMemberBinding="{Binding Name}"/>
@@ -358,32 +410,22 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="2" >
-            <ListBox Margin="20" ItemsSource="{Binding Source= {StaticResource ListOfDrinks}}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <!--<ListView Margin="8" Height="Auto" Width="Auto" ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=string.Empty }" Header="Name" Width="100"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>-->
-        </Grid>
+
         <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
-            <DockPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                               HorizontalAlignment="Center">ObservableCollection sequences of events
+                </TextBlock>
                 <TextBox Name="tboxLog" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
-            </DockPanel>
+            </StackPanel>
         </Grid>
         <Grid x:Name="GridUserViewModel" Grid.Row="1" Grid.Column="5" >
-            <StackPanel Width="Auto">
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                           HorizontalAlignment="Center">Module PropertyChangedEventHandler [ValidatableProperty]
+                </TextBlock>
                 <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          Margin="5"/>
                 <Button Content="Save" 
@@ -400,77 +442,64 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="5,2,0,0" 
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                       HorizontalAlignment="Center">DataGrid Bounded by Code Behing
+                </TextBlock>
+
+                <DataGrid Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="5,2,0,0" 
                       Name="GridAuthors" ColumnWidth="100" 
                       ColumnHeaderHeight="30" HeadersVisibility="Column"
                       Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
                       BorderBrush="Gray" BorderThickness="5" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Foreground" Value="Blue"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Book Title" Width="110" Binding="{Binding BookTitle}" >
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap"/>
-                                <!--<Setter Property="TextBlock.TextAlignment" Value="Center"/>-->
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                        <DataGridTextColumn.EditingElementStyle>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Foreground" Value="Blue"/>
-                            </Style>
-                        </DataGridTextColumn.EditingElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridCheckBoxColumn Header="MVP" Width="50" Binding="{Binding IsMVP}" IsThreeState="True" />
-                    <DataGridTemplateColumn Header="DOB">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DOB}" Margin="4"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding DOB, Mode=TwoWay}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Width="80" Binding="{Binding Name}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Foreground" Value="Blue"/>
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Book Title" Width="110" Binding="{Binding BookTitle}" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                    <!--<Setter Property="TextBlock.TextAlignment" Value="Center"/>-->
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Foreground" Value="Blue"/>
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridCheckBoxColumn Header="MVP" Width="50" Binding="{Binding IsMVP}" IsThreeState="True" />
+                        <DataGridTemplateColumn Header="DOB">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DOB}" Margin="4"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding DOB, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-            <Button Grid.Row="1" Content="Change Row Color" Height="23" HorizontalAlignment="Left" Margin="12,5,0,0"
+                <Button Grid.Row="1" Content="Change Row Color" Height="23" HorizontalAlignment="Left" Margin="12,5,0,0"
                 Name="RowColorButton" VerticalAlignment="Top" Width="116" Click="RowColorButton_Click" />
+            </StackPanel>
         </Grid>
-        <!--<StackPanel Orientation="Vertical" Height="Auto" Name="LayoutRoot" Width="Auto">
-        <Label Content="Employee ID" Margin="20,0,0,0" />
-        <ComboBox Name="employeeIDComboBox" DisplayMemberPath="EmployeeNumber" ItemsSource="{Binding}" 
-                  SelectionChanged="customerIDComboBox_SelectionChanged"
-                  IsSynchronizedWithCurrentItem="True" SelectedIndex="0" Height="23" Width="120" 
-                  HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" />
-        <ListView ItemsSource="{Binding Path=employeeList}" Name="employeesDataGrid" Margin="34,46,34,50">
-            <ListView.View>
-                <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="Line Items">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=EmployeeNumber, Mode=OneWay}" 
-                                    Header="Employee Number" Width="50"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName, Mode=TwoWay}" 
-                                    Header="First Name" Width="50"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName, Mode=TwoWay}" 
-                                    Header="Last Name" Width="50"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Name="saveChangesButton" Content="Save Changes" Click="saveChangesButton_Click" 
-                Width="80" Height="30" Margin="450,0,0,0"/>
-    </StackPanel>-->
+
 
 
     </Grid>
