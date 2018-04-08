@@ -3,13 +3,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:viewModel="clr-namespace:Binding.StaticResource.AddNew.ViewModel"
     xmlns:dataProvider="clr-namespace:Binding.StaticResource.AddNew.DataProvider"
+    xmlns:model="clr-namespace:Binding.StaticResource.AddNew.Model"
     Title="Window1" Height="600" Width="1500">
     <Window.Resources>
         <!-- create an instance of our DataProvider class -->
+        <!-- Customers -->
         <ObjectDataProvider x:Key="CustomerDataProvider" ObjectType="{x:Type dataProvider:CustomerDataProvider}"/>
         <!-- define the method which is invoked to obtain our data -->
         <ObjectDataProvider x:Key="Customers" ObjectInstance="{StaticResource CustomerDataProvider}" MethodName="GetCustomers"/>
-        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!-- ListOfStrings -->
+        <ObjectDataProvider x:Key="ListOfStrings" ObjectType="{x:Type model:ListOfStrings}"/>
+        <ObjectDataProvider x:Key="ListOfDrinks" ObjectInstance="{StaticResource ListOfStrings}" MethodName="GetListOfDrinks" />
+
+<BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         <viewModel:ListFilesPath x:Key="FilePathList" />
         <viewModel:EmployeeList x:Key="EmployeeList"/>
         <viewModel:EmployeeDirectContent x:Key="DirectContentEmployeeList">
@@ -125,7 +132,18 @@
                        Text="{Binding Path=CustomerID}"/>
                        <!--Text="{Binding XPath=@CustomerID}"/>-->
         </DataTemplate>
-    </Window.Resources>
+        <DataTemplate x:Key="OrangeHeaderTemplate">
+            <DockPanel>
+                <CheckBox/>
+                <TextBlock FontSize="10" Foreground="Orange"
+                           FontWeight="Bold" >
+                    <TextBlock.Text>
+                        <Binding/>
+                    </TextBlock.Text>
+                </TextBlock>
+            </DockPanel>
+        </DataTemplate>
+</Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -315,44 +333,6 @@
 
             </ListView.View>
                 </ListView>
-
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <DataGrid Grid.Row="0" DataContext="{Binding Source={StaticResource Customers}}" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="10,5,0,0" 
-                    VerticalAlignment="Top" RowHeight="30" ColumnWidth="Auto" 
-                  ColumnHeaderHeight="30" HeadersVisibility="Column" Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue"
-                  BorderBrush="Gray" BorderThickness="5" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Width="80" Binding="{Binding FirstName}" >
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="TextWrapping" Value="Wrap"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.EditingElementStyle>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Foreground" Value="Blue"/>
-                                </Style>
-                            </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>-->
-
-                        <!--<DataGridTemplateColumn Header="Date">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Date}" Margin="4"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>-->
-
-                    <!--</DataGrid.Columns>
-                </DataGrid>-->
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -379,14 +359,23 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="2">
-            <ListView Margin="8" Height="Auto" Width="Auto" ItemsSource="{Binding ListOfStrings}">
+        <Grid Grid.Row="1" Grid.Column="2" >
+            <ListBox Margin="20" ItemsSource="{Binding Source= {StaticResource ListOfDrinks}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!--<ListView Margin="8" Height="Auto" Width="Auto" ItemsSource="{Binding}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding }" Header="Name" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=string.Empty }" Header="Name" Width="100"/>
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
         </Grid>
         <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
             <DockPanel>

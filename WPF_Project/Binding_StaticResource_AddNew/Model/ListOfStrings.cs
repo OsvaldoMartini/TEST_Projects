@@ -17,5 +17,11 @@ namespace Binding.StaticResource.AddNew.Model
             this.Add("Water");
 
         }
+
+
+        public List<String> GetListOfDrinks()
+        {
+            return this;
+        }
     }
 }

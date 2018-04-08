@@ -5,6 +5,7 @@ using System.Windows;
     using Binding.StaticResource.AddNew.Model;
 using Binding.StaticResource.AddNew.ViewModel;
 using System.Text;
+using System.Windows.Controls;
 using Binding.StaticResource.AddNew.Utils;
 using Modules_ViewModel;
 
@@ -38,6 +39,8 @@ namespace Binding.StaticResource.AddNew
             SetUserModule_ViewModel();
 
             GridAuthors.ItemsSource = LoadCollectionData();
+
+
         }
 
         private void SetUserModule_ViewModel()
@@ -268,10 +271,13 @@ namespace Binding.StaticResource.AddNew
 
         private void LastNameCM_Click(object sender, RoutedEventArgs e)
         {
-            Author author = (Author)GridAuthors.SelectedItem;
-            if (author != null)
-                MessageBox.Show("Selected author: " + author.Name);
-        } 
+        
+        }
+
+
+
+
+
     }
 
 }
