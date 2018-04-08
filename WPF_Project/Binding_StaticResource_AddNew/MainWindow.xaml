@@ -127,9 +127,19 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
 
-        <DataTemplate x:Key="GridColumnTemplate">
+        <DataTemplate x:Key="GridViewColumnTemp_1">
             <TextBlock HorizontalAlignment="Center" 
                        Text="{Binding Path=CustomerID}"/>
+            <!--Text="{Binding XPath=@CustomerID}"/>-->
+        </DataTemplate>
+        <DataTemplate x:Key="GridViewColumnTemp_2">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" 
+                       Text="{Binding Path=Name}"/>
+            <!--Text="{Binding XPath=@CustomerID}"/>-->
+        </DataTemplate>
+        <DataTemplate x:Key="GridViewColumnTemp_3">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" 
+                       Text="{Binding Path=Book}"/>
             <!--Text="{Binding XPath=@CustomerID}"/>-->
         </DataTemplate>
         <DataTemplate x:Key="OrangeHeaderTemplate">
@@ -359,7 +369,7 @@
                             </GridViewColumn>
 
                             <GridViewColumn Header="Customer No." Width="50" 
-                                    CellTemplate="{StaticResource GridColumnTemplate}"/>
+                                    CellTemplate="{StaticResource GridViewColumnTemp_1}"/>
                         </GridView>
 
                     </ListView.View>
@@ -413,7 +423,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
+        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
                 <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
                                HorizontalAlignment="Center">ObservableCollection sequences of events
@@ -421,7 +431,7 @@
                 <TextBox Name="tboxLog" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridUserViewModel" Grid.Row="1" Grid.Column="5" >
+        <Grid x:Name="GridUserViewModel" Grid.Row="1" Grid.Column="4" >
             <StackPanel Orientation="Vertical">
                 <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
                            HorizontalAlignment="Center">Module PropertyChangedEventHandler [ValidatableProperty]
@@ -435,9 +445,7 @@
                         Visibility="{Binding IsModified, Converter={StaticResource BoolToVisibility}}"/>
             </StackPanel>
         </Grid>
-
-
-        <Grid Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2">
+        <Grid Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
@@ -499,7 +507,41 @@
                 Name="RowColorButton" VerticalAlignment="Top" Width="116" Click="RowColorButton_Click" />
             </StackPanel>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
 
+                <TextBlock FontSize="10" FontWeight="Bold" Margin="10" Foreground="Green" TextWrapping="Wrap"
+                       HorizontalAlignment="Center">Dynamic GridView Bounded by Code Behing
+                </TextBlock>
+
+                <ListView Grid.Row="0" Name="lstGridView" Margin="5" >
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Authors"
+                                  ColumnHeaderTemplate="{StaticResource OrangeHeaderTemplate}" >
+
+                            <!-- Add a ContextMenu to GridView Header -->
+                            <GridView.ColumnHeaderContextMenu>
+                                <ContextMenu >
+                                    <MenuItem Header="Ascending" Click="MenuItem_Click" />
+                                    <MenuItem Header="Descending" />
+                                </ContextMenu>
+                            </GridView.ColumnHeaderContextMenu>
+                            <!-- Add GridVeiw Columns -->
+                            <GridViewColumn Header=" Name" Width="80" CellTemplate="{StaticResource GridViewColumnTemp_2}"/>
+                            <GridViewColumn Header=" Age" Width="50" DisplayMemberBinding="{Binding Path=Age}" />
+                            <GridViewColumn Header=" Book" Width="110" CellTemplate="{StaticResource GridViewColumnTemp_3}" />
+                            <GridViewColumn Header=" MVP" Width="50" DisplayMemberBinding="{Binding Path=Mvp}" />
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+        </Grid>
 
 
     </Grid>

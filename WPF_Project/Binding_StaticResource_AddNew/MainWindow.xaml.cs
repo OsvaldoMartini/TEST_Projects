@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-    using Binding.StaticResource.AddNew.Model;
+using Binding.StaticResource.AddNew.Model;
 using Binding.StaticResource.AddNew.ViewModel;
 using System.Text;
 using System.Windows.Controls;
 using Binding.StaticResource.AddNew.Utils;
 using Modules_ViewModel;
+using System.Windows.Data;
 
 
 namespace Binding.StaticResource.AddNew 
@@ -39,6 +41,13 @@ namespace Binding.StaticResource.AddNew
             SetUserModule_ViewModel();
 
             GridAuthors.ItemsSource = LoadCollectionData();
+
+
+
+            lstGridView.ItemsSource = AuthorsGridViewList();
+
+            //CreateDynamicGridView();
+
 
         }
 
@@ -270,6 +279,60 @@ namespace Binding.StaticResource.AddNew
         }
 
         private void LastNameCM_Click(object sender, RoutedEventArgs e)
+        {
+        
+        }
+
+
+        private ArrayList AuthorsGridViewList()
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new AuthorGridView("Mahesh Chand", 30, "ADO.NET Programming", true));
+            list.Add(new AuthorGridView("Mike Gold", 35, "Programming C#", true));
+            list.Add(new AuthorGridView("Raj Kumar", 25, "WPF Cookbook", false));
+            list.Add(new AuthorGridView("Tony Parker", 48, "VB.NET Coding", false));
+            list.Add(new AuthorGridView("Renee Ward", 22, "Coding Standards", true));
+            list.Add(new AuthorGridView("Praveen Kumar", 33, "Vista Development", false));
+
+            return list;
+        }
+
+
+        private void CreateDynamicGridView()
+        {
+            // Create a GridView  
+            GridView grdView = new GridView();
+            grdView.AllowsColumnReorder = true;
+            grdView.ColumnHeaderToolTip = "Authors";
+
+            GridViewColumn nameColumn = new GridViewColumn();
+            nameColumn.DisplayMemberBinding = new System.Windows.Data.Binding("Name");
+            nameColumn.Header = "Author Name";
+            nameColumn.Width = 120;
+            grdView.Columns.Add(nameColumn);
+
+            GridViewColumn ageColumn = new GridViewColumn();
+            ageColumn.DisplayMemberBinding = new System.Windows.Data.Binding("Age");
+            ageColumn.Header = "Age";
+            ageColumn.Width = 30;
+            grdView.Columns.Add(ageColumn);
+
+            GridViewColumn bookColumn = new GridViewColumn();
+            bookColumn.DisplayMemberBinding = new System.Windows.Data.Binding("Book");
+            bookColumn.Header = "Book";
+            bookColumn.Width = 250;
+            grdView.Columns.Add(bookColumn);
+
+            GridViewColumn mvpColumn = new GridViewColumn();
+            mvpColumn.DisplayMemberBinding = new System.Windows.Data.Binding("Mvp");
+            mvpColumn.Header = "Mvp";
+            mvpColumn.Width = 50;
+            grdView.Columns.Add(mvpColumn);
+
+            lstGridView.View = grdView;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
         
         }
