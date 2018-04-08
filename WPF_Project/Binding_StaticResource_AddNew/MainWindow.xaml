@@ -374,7 +374,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <DataGrid Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="5,2,0,0" 
-                      Name="GridAuthors" VerticalAlignment="Top" RowHeight="30" ColumnWidth="100" 
+                      Name="GridAuthors" VerticalAlignment="Top" ColumnWidth="100" 
                       ColumnHeaderHeight="30" HeadersVisibility="Column"
                       Background="LightGray" RowBackground="LightYellow" 
                       AlternatingRowBackground="LightBlue"
@@ -396,7 +396,6 @@
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap"/>
-                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                         <DataGridTextColumn.EditingElementStyle>

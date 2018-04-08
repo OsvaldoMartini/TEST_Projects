@@ -262,7 +262,8 @@ namespace Binding.StaticResource.AddNew
         private void RowColorButton_Click(object sender, RoutedEventArgs e)
         {
             Author author = (Author)GridAuthors.SelectedItem;
-            MessageBox.Show("Selected author: " + author.Name);
+            if (author != null)
+                MessageBox.Show("Selected author: " + author.Name);
         } 
     }
 
