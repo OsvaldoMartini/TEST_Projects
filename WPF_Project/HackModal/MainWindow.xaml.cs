@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using HackModal.ModalDialog;
 
 namespace HackModal
 {

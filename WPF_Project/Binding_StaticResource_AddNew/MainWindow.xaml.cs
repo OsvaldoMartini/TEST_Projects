@@ -9,7 +9,6 @@ using System.Text;
 using System.Windows.Controls;
 using Binding.StaticResource.AddNew.Utils;
 using Modules_ViewModel;
-using System.Windows.Data;
 
 
 namespace Binding.StaticResource.AddNew 

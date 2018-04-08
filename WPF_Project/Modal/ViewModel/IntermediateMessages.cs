@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
-using Modal.Interfaces;
 using Modal.Model;
 
 namespace Modal.ViewModel
@@ -13,9 +12,6 @@ namespace Modal.ViewModel
         private string _messageInternal;
         private string _messageScreenTransfer;
         public List<Inventory> Inventory{get;set;}
-
-        public UserViewModel UserViewModel { get; set; }
-
 
         #region PropertyChangedEventHandler
         public event PropertyChangedEventHandler PropertyChanged;

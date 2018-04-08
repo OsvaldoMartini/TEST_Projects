@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Binding.StaticResource.AddNew.Model;
 
 namespace Binding.StaticResource.AddNew.DataProvider
 {

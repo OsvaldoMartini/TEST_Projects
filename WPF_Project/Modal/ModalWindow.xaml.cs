@@ -19,24 +19,30 @@ namespace Modal {
         public ModalWindow() {
             InitializeComponent();
             SetDataContext();
+
+            SetUserModule_ViewModel();
+        }
+
+        private void SetUserModule_ViewModel()
+        {
+            UserViewModel user = new UserViewModel();
+            user.UserName = "User";
+            user.IsModified = false;
+            //DataContext = user;
+            this.GridUserViewModel.DataContext = user;
         }
 
         public void SetDataContext()
         {
             //If you get this example you'll get 90% of MVVM.
-            IntermediateMessages messages = new IntermediateMessages();
-            
-            messages.MessageInternal = "Internal Message";
-            messages.MessageScreenTransfer = "Screen Transfer";
-            messages.MessageId = 1;
+            MessagesModel = new IntermediateMessages();
 
-            UserViewModel user = new UserViewModel();
-            user.UserName = "User";
-            user.IsModified = false;
+            MessagesModel.MessageInternal = "Internal Message";
+            MessagesModel.MessageScreenTransfer = "Screen Transfer";
+            MessagesModel.MessageId = 1;
 
-            messages.UserViewModel = user;
-            
-            this.DataContext = messages;
+            this.GridRow1.DataContext = MessagesModel;
+
         }
 
         private void ModalClick(object sender, RoutedEventArgs args) {

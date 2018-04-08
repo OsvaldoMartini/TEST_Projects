@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Windows;
 using Modal.Concrete;
 using Modal.ViewModel;
@@ -21,6 +20,7 @@ namespace Modal.UserControls {
 
             //If you get this example you'll get 90% of MVVM.
             MessagesModel = model;
+            this.GridUserCrtl2.DataContext = MessagesModel;
         }
 
       private void OkButton_Click(object sender, RoutedEventArgs args)
