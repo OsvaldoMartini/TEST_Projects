@@ -311,7 +311,7 @@
                 <TextBox Name="tboxLog" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"/>
             </DockPanel>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="5">
+        <Grid x:Name="GridUserViewModel" Grid.Row="1" Grid.Column="5" >
             <StackPanel Width="Auto">
                 <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          Margin="5"/>

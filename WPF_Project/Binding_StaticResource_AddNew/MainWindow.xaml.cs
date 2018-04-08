@@ -42,7 +42,8 @@ namespace Binding.StaticResource.AddNew
             UserViewModel user = new UserViewModel();
             user.UserName = "User";
             user.IsModified = false;
-            DataContext = user;
+            //DataContext = user;
+            this.GridUserViewModel.DataContext = user;
         }
 
         private void SettingObservableEvents()
