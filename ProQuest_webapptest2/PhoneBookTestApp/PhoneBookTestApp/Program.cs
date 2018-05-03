@@ -1,6 +1,7 @@
 ﻿using System;
-using PhoneBookTestApp.DataLayer;
+using PhoneBookTestApp.DataLayer.Extensions;
 using PhoneBookTestApp.DataLayer.IRepository;
+using PhoneBookTestApp.DataLayer.Model;
 using PhoneBookTestApp.DataLayer.Repository;
 using PhoneBookTestApp.DataLayer.Utils;
 
@@ -25,6 +26,7 @@ namespace PhoneBookTestApp
                 // TODO: find Cynthia Smith and print out just her entry
                 FindPerson(_phonebook, "Cynthia", "Smith");
                 
+                InsertPerson(_phonebook);
                 InsertPerson(_phonebook);
 
                 // TODO: insert the new person objects into the database

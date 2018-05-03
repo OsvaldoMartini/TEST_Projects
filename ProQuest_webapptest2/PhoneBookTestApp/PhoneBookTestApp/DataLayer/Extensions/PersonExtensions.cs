@@ -1,8 +1,9 @@
 ﻿using System.Data.SQLite;
 using System.Linq;
 using Dapper;
+using PhoneBookTestApp.DataLayer.Model;
 
-namespace PhoneBookTestApp.DataLayer.Utils
+namespace PhoneBookTestApp.DataLayer.Extensions
 {
     public static class PersonExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PhoneBookTestApp.DataLayer;
+using PhoneBookTestApp.DataLayer.Model;
 
 namespace PhoneBookTestAppTests
 {

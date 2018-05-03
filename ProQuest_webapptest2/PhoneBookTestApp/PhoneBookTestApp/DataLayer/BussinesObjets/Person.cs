@@ -1,6 +1,6 @@
 ﻿using PhoneBookTestApp.DataLayer.Utils;
 
-namespace PhoneBookTestApp.DataLayer
+namespace PhoneBookTestApp.DataLayer.Model
 {
     public partial class Person : BaseBO
     {

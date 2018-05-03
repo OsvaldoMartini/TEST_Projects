@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PhoneBookTestApp.DataLayer.Model;
 using PhoneBookTestApp.DataLayer.Utils;
 
 namespace PhoneBookTestApp.DataLayer.IRepository

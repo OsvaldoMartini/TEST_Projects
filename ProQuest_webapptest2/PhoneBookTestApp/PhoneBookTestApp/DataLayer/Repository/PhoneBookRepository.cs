@@ -2,7 +2,9 @@
 using System.Data.SQLite;
 using System.Linq;
 using Dapper;
+using PhoneBookTestApp.DataLayer.Extensions;
 using PhoneBookTestApp.DataLayer.IRepository;
+using PhoneBookTestApp.DataLayer.Model;
 using PhoneBookTestApp.DataLayer.Utils;
 
 namespace PhoneBookTestApp.DataLayer.Repository

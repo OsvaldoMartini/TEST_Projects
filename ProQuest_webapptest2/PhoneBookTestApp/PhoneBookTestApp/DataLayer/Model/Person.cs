@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PhoneBookTestApp.DataLayer
+namespace PhoneBookTestApp.DataLayer.Model
 {
     public partial class Person
     {
